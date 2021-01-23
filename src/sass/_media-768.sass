@@ -1,0 +1,322 @@
+@media (max-width: 768px)
+  /*SM*/
+  .hidden-sm
+    display: none
+  /*INTERFACE*/
+  section
+    padding: 40px 0
+  .section
+    &-title
+      font-size: 25px
+    &-subtitle
+      font-size: 16px
+      line-height: 1.3
+
+  .button
+    padding: 15px
+    &_up
+      padding: 8px
+      bottom: 20px
+
+  /*ROWS*/
+  .row-flex
+    [class*="col-"]
+      &:last-child
+        margin-bottom: 0
+
+  .info
+    &-block
+      &__header
+        padding: 15px 0
+      &__descr
+        font-size: 12px
+      &__content
+        padding: 12px 25px
+
+  .form
+    padding: 15px
+    &__input, &__textarea
+      max-width: 350px
+    &__row
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      margin-bottom: 20px
+    &__group
+      align-items: center
+    &__dropdown
+      max-width: none
+    &-select
+      &__title
+        min-width: 200px
+  .popup
+    &-content
+      width: 80%
+      padding: 25px 30px
+      &__title
+        font-size: 20px
+
+
+  /*HEADER*/
+  .header
+    &-top
+      &__button
+        padding: 0
+        border: none
+      &__link
+        img
+          margin-right: 0
+    &-wraps
+      display: flex
+      justify-content: space-between
+      align-items: center
+    &-logo
+      margin-bottom: 0
+
+
+    &-main
+      position: relative
+      padding: 10px 0
+
+    /*Navigation*/
+    &-navigation
+      display: none
+      position: fixed
+      top: 0
+      left: -80vw
+      background: $text-color
+      height: 100vh!important
+      width: 60vw
+      transition: all .7s ease
+      z-index: 999
+      &__active
+        display: block
+        left: 0
+      &__list
+        flex-direction: column
+        align-items: center
+        justify-content: space-around
+      &__item
+        width: 100%
+        margin-right: 0
+      &__link
+        display: block
+        padding: 10px
+        letter-spacing: 1.5px
+        &::after
+          display: none
+      &__btn
+        display: block
+      &__close
+        display: block
+        background: $nav-color
+      &__line
+        &-close
+          &::before,
+          &::after
+            background: $text-color
+    /*END Navigation*/
+    /*Content*/
+    &-content
+      padding-top: 30px
+      padding-bottom: 60px
+      &__title
+        margin-bottom: 30px
+        font-size: 25px
+    &-info
+      &__title
+        font-size: 18px
+      &__content
+        padding: 0
+
+    &-social
+      position: absolute
+      flex-direction: row
+      top: auto
+      right: auto
+      bottom: 7px
+      left: 50%
+      transform: translateX(-50%)
+      &__link
+        margin-right: 5px
+        margin-bottom: 0
+        &:last-child
+          margin-right: 0
+  /*END HEADER*/
+
+  /*FEATURES*/
+  .features
+    &-block
+      margin-bottom: 25px
+  /*END FEATURES*/
+
+  /*CALCULATION*/
+  .calculation
+    &-wrap
+      padding-top: 50px
+      &::before
+        width: 80px
+        height: 80px
+      &::after
+        width: 100px
+        height: 100px
+    &-form
+      padding: 0
+      &__row
+        &-wrap
+          &:last-child
+            flex-direction: column
+            align-items: flex-end
+  /*END CALCULATION*/
+
+  /*OFFER*/
+  .offer
+    &-form
+      padding: 0
+  /*END OFFER*/
+
+  /*COMPANY*/
+  .company
+    padding: 40px 0 50px 0
+    background-position: 60% 0
+  /*END COMPANY*/
+
+  /*DELIVERY*/
+  .delivery
+    &-title
+      margin-bottom: 25px
+  /*END DELIVERY*/
+
+  /*ORDER*/
+  .order
+    &-form
+      padding: 0
+      &__input
+        margin-bottom: 10px
+        &:last-child
+          margin-bottom: 0
+  /*END ORDER*/
+
+  /*LICENSE*/
+  .license
+    &-slider
+      &__item
+        img
+          height: 165px
+  /*END LICENSE*/
+
+  /*SCHEMA*/
+  .schema
+    &-result
+      padding: 30px
+      font-size: 14px
+      line-height: 1.2
+    &-block
+      &__img
+        min-height: auto
+  /*END SCHEMA*/
+
+  /*UPSELL*/
+  .upsell
+    &-block
+      margin-bottom: 20px
+      flex-basis: auto
+      &:last-child
+        margin-bottom: 0
+      &__img
+        margin-bottom: 10px
+        min-height: auto
+      &s
+        flex-direction: column
+  /*END UPSELL*/
+
+  /*NEWS*/
+  .news
+    &-title
+      margin-bottom: 20px
+    &-button
+      margin: 0 auto
+    &-block
+      margin-bottom: 20px
+      &__content
+        flex-direction: row
+      &__date
+        left: 8px
+        padding: 10px
+        margin-right: 0
+        transform: translateX(0)
+      &__text
+        margin-top: 0
+        min-height: auto
+      &__descr
+        word-break: normal
+  /*END NEWS*/
+
+  /*MANAGERS*/
+  .managers
+    &-slider
+      height: auto
+      &__item
+        max-width: none
+      &__text
+        width: 100%
+        min-height: 125px
+  /*END MANAGERS*/
+
+  /*BEST*/
+  .best
+    &-timeline
+      &::before
+        left: -15px
+        height: 90%
+      &__wrap
+        padding-left: 25px
+        &:nth-child(even)
+          margin-bottom: 20px
+          padding-left: 15px
+          .best
+            &-block
+              margin-top: 0
+              &__img
+                margin-right: 15px
+              &__number
+                left: -31px
+              &__title
+                text-align: left
+              &__descr
+                text-align: left
+
+        &:nth-child(odd)
+          margin-bottom: 20px
+          padding-right: 15px
+          padding-left: 15px
+          .best
+            &-block
+              &__img
+                margin-right: 15px
+              &__number
+                right: auto
+                left: -31px
+              &__title
+                text-align: left
+              &__descr
+                text-align: left
+    &-block
+      flex-direction: row
+      &__text
+        margin-right: 0
+
+  /*END BEST*/
+
+  /*FOOTER*/
+  .footer
+    &-wraps
+      display: block
+      margin-bottom: 10px
+    &-delivery
+      justify-content: space-around
+    &-phones
+      justify-content: space-around
+  /*END FOOTER*/
+
+

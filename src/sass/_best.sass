@@ -1,0 +1,84 @@
+/*BEST*/
+.best
+  background: $section-bg
+  &-subtitle
+    margin-bottom: 22px
+  &-timeline
+    position: relative
+    &::before
+      display: block
+      position: absolute
+      content: ''
+      top: 30px
+      left: 50%
+      width: 1px
+      height: 85%
+      border: 1px dashed #c1c4c7
+    &__wrap
+      height: 100%
+      &:last-child
+        margin-bottom: 0
+      &:nth-child(even)
+        padding-left: 20px
+        .best
+          &-block
+            margin-top: 70px
+            flex-direction: row
+            &__number
+              left: -34px
+            &__img
+              margin-right: 22px
+            &__text
+              margin-right: 0
+              text-align: left
+            &__number
+              left: -35px
+
+      &:nth-child(odd)
+        padding-right: 20px
+        margin-bottom: 70px
+        &:last-child
+          margin-bottom: 0
+        .best
+          &-block
+            &__number
+              right: -34px
+  &-block
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row-reverse
+
+    &__number
+      display: flex
+      align-items: center
+      justify-content: center
+
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+
+      width: 28px
+      height: 28px
+      font-size: 13px
+      color: #c1c4c7
+      text-align: center
+      border: 1px solid #c1c4c7
+      border-radius: 50%
+      background-color: #f3f3f3
+    &__img
+      max-width: 65px
+      flex-shrink: 0
+    &__text
+      margin-right: 22px
+      text-align: right
+    &__title
+      margin-bottom: 5px
+      font-size: 16px
+      font-weight: 700
+      color: $active-color
+    &__descr
+      font-weight: 300
+      line-height: 1.36
+/*END BEST*/

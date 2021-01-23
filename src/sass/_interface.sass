@@ -1,0 +1,329 @@
+/*Interface*/
+.hidden
+  display: none
+
+section
+  padding: 50px 0
+
+.section
+  &-title
+    text-align: center
+    font-size: 30px
+    line-height: 1.3
+  &-subtitle
+    text-align: center
+    margin-top: 12px
+    font-size: 19px
+    font-weight: 300
+    line-height: 1.2
+    span
+      text-transform: uppercase
+
+
+.button
+  display: block
+  padding: 22px 33px
+  color: $text-color-light
+  font-size: 14px
+  text-transform: uppercase
+  background: $active-color
+  border-radius: 5px
+  border: 1px solid transparent
+  transition: all .5s ease
+  &:hover
+    cursor: pointer
+    background: darken($active-color, 10)
+  &-o
+    padding: 15px 21px
+    font-size: 12px
+    background: transparent
+    color: $active-color
+    border: 1px solid $active-color
+    transition: all 0.5s ease
+    &:hover
+      background: $active-color
+      color: $text-color-light
+  &_up
+    display: none
+    padding: 8px
+    position: fixed
+    right: 3%
+    bottom: 40px
+    z-index: 997
+
+.dark-bg
+  position: relative
+  z-index: 2
+  &::before
+    position: absolute
+    display: block
+
+    content: ''
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background: rgba($dark-bg, 0.3)
+    z-index: -1
+/*ROWS*/
+.row-flex
+  display: flex
+  flex-wrap: wrap
+  [class*="col-"]
+    margin-bottom: 30px
+/*Info*/
+.info
+  &-block
+    text-align: center
+    min-height: 400px
+    &__header
+      padding: 24px 0 22px 0
+      text-transform: uppercase
+      color: $text-color-light
+      background: $dark-bg
+    &__title
+      font-size: 16px
+      font-weight: 700
+      line-height: 1.4
+    &__content
+      position: relative
+      padding: 12px 0 25px
+      background: $text-color-light
+      &-title
+        font-size: 18px
+        text-transform: uppercase
+        line-height: 1.2
+      &-subtitle
+        display: block
+        font-size: 25px
+        font-weight: 700
+        color: $active-color
+    &__img
+      margin-bottom: 5px
+/*Form*/
+.form
+  padding: 10px 17px 20px 17px
+  display: flex
+  width: 100%
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  &__group
+    display: flex
+    flex-direction: column
+    margin-right: 10px
+    &:last-child
+      margin-right: 0
+
+  &__row
+    margin-bottom: 25px
+    display: flex
+    width: 100%
+    justify-content: space-around
+    &-wrap
+      display: flex
+      flex-direction: row
+      justify-content: space-around
+  &__small
+    margin-top: 15px
+    display: block
+    text-align: center
+    font-size: 14px
+    font-weight: 300
+    line-height: 1.2
+
+  &__input, &__textarea
+    position: relative
+    min-width: 281px
+    width: 100%
+    margin-bottom: 3px
+    padding: 20px 21px
+    font-family: 'Open Sans', sans-serif
+    font-size: 14px
+    font-weight: 400
+    background: $text-color-light
+    border: 1px solid #c1c4c7
+    &::placeholder
+      color: #616467
+      font-size: 13px
+      font-weight: 300
+    &-small
+      min-width: auto
+      text-align: center
+      max-width: 71px
+      margin-bottom: 0
+      padding: 15px 10px
+  &__label
+    margin-bottom: 5px
+    font-size: 16px
+    font-weight: 700
+    &-small
+      margin-bottom: 0
+      font-size: 14px
+      font-weight: 400
+
+  &__button
+    margin-top: 15px
+  &__custom
+    &-select
+      display: none
+      position: absolute
+
+  /*User select*/
+  &__dropdown
+    position: relative
+    max-width: 260px
+    width: 100%
+    display: flex
+
+    border: 1px solid #c1c4c7
+    background: #ffffff
+    &-button
+      display: block
+      padding: 0
+      text-align: center
+      width: 38px
+      height: auto
+      background: $section-bg
+      border: none
+      transition: all 0.5s ease
+      &:hover
+        cursor: pointer
+        background: darken($section-bg, 4)
+
+  &-select
+    cursor: pointer
+    &__title
+      position: relative
+      min-width: 226px
+      width: 100%
+      padding: 19px 23px
+      border: 1px solid transparent
+      border-right: 1px solid #c1c4c7
+      font-size: 13px
+      font-weight: 300
+      line-height: 1
+    &__dropdown
+      min-width: 226px
+      position: absolute
+      left: -1px
+      right: -1px
+      top: 100%
+      border: 1px solid #c1c4c7
+      z-index: 55
+      overflow-x: hidden
+      background: $text-color-light
+      height: 95px
+
+    &__item
+      padding: 5px 23px
+      background: #ffffff
+      &:hover
+        cursor: pointer
+        background: darken($section-bg, 4)
+  /*End User select*/
+
+/*SLIDER*/
+.slider
+  &-btn
+    position: absolute
+    padding: 0
+    top: 50%
+    transform: translateY(-50%)
+
+    width: 14px
+    height: 46px
+    border: none
+    background: transparent
+    z-index: 99
+    &__prev
+      left: 0
+      background: url("../img/slick-prev.svg") center 0 no-repeat
+      background-size: cover
+    &__next
+      right: 0
+      background: url("../img/slick-next.svg") center 0 no-repeat
+      background-size: cover
+
+/*END SLIDER*/
+
+/*SOCIAL-ICONS Block*/
+.social
+  &-block
+    display: flex
+    flex-direction: row
+    font-size: 18px
+    &__link
+      margin-right: 10px
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 36px
+      height: 36px
+      border: 1px solid $nav-color
+      border-radius: 4px
+      color: $nav-color
+      transition: all 0.5s ease
+      &:last-child
+        margin-right: 0
+      &:hover
+        color: $text-color-light
+        border: 1px solid $text-color-light
+
+/*END SOCIAL-ICONS Block*/
+
+.warning
+  position: relative
+  width: 100%
+  display: block
+
+  font-size: 12px
+  z-index: 10
+
+/*POPUP*/
+.popup
+  position: fixed
+  display: none
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  background: rgba(0,0,0, 0.5)
+  z-index: 999
+  &-content
+    position: fixed
+    display: block
+    width: 100%
+    text-align: center
+    padding: 30px 50px
+    top: 10%
+    left: 50%
+    transform: translateX(-50%)
+    &__close
+      position: absolute
+      top: -20px
+      right: -25px
+
+      width: 20px
+      color: $text-color-light
+      text-align: center
+      font-size: 30px
+      border: none
+      padding: 0
+      background: transparent
+    &__title
+      font-size: 30px
+      font-weight: 700
+    &__descr
+      font-size: 18px
+
+/*END POPUP*/
+
+.iframe
+  width: 100%
+  height: 100%
+
+/*END Interface*/
+
+

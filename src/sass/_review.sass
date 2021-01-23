@@ -1,0 +1,51 @@
+/*REVIEW*/
+.review
+  background: $section-bg-light
+  &-title
+    margin-bottom: 23px
+  &-btn
+   top: 36px
+
+   &__next
+     right: 50%
+     transform: translateX(100px)
+
+   &__prev
+     left: 50%
+     transform: translateX(-100px)
+
+  &-block
+    display: flex!important
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    &__img
+      display: flex
+      margin-bottom: 17px
+      align-items: center
+      justify-content: center
+
+      width: 114px
+      height: 114px
+      img
+        border-radius: 50%
+        height: 114px
+    &__title
+      margin-bottom: 10px
+      font-size: 16px
+      font-weight: 700
+    &__link
+      margin-bottom: 10px
+      color: $active-color
+      &:hover
+        color: darken($active-color, 15)
+    &__descr
+      font-size: 14px
+      text-align-last: center
+      font-weight: 300
+      line-height: 1.5
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
+
+/*END REVIEW*/

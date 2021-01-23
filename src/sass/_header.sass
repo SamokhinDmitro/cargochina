@@ -1,0 +1,218 @@
+/*Header*/
+.header
+  /*Header-top*/
+  &-top
+    padding: 8px 0
+    background: $dark-bg
+    &__button
+      display: block
+      text-transform: uppercase
+      padding: 10px 14px
+      background: transparent
+      color: $nav-color
+      border: 1px solid $nav-color
+      cursor: pointer
+      transition: all .5s ease
+      &:hover
+        color: $text-color-light
+        border-color: $text-color-light
+
+    &__delivery
+      display: flex
+      justify-content: space-between
+    &__phones
+      display: flex
+      justify-content: space-between
+    &__link
+      display: block
+      color: $nav-color
+      img
+        margin-right: 10px
+      &:hover
+        color: $text-color-light
+
+  /*END Header-top*/
+
+  &-wrap
+    background: #626180 url('../img/header/header_bg.jpg') center 0 no-repeat
+    background-size: cover
+  /*Header-main*/
+  &-main
+    padding: 15px 0 12px 0
+    border-bottom: 1px solid #ffffff
+  &-logo
+    display: flex
+    justify-content: center
+    align-items: center
+    &__img
+      flex-shrink: 0
+      margin-right: 10px
+    &__text
+      text-transform: uppercase
+      color: $text-color-light
+    &__title
+      display: block
+      font-size: 27px
+      font-weight: 700
+    &__descr
+      font-size: 12px
+
+  /*Navigation*/
+  &-navigation
+      &__btn
+        display: none
+        position: relative
+        width: 30px
+        height: 30px
+        background: $nav-color
+        border-radius: 5px
+        transition: all 0.5s ease
+        &:hover
+          box-shadow: 1px 1px 10px rgba(0,0, 0, .4)
+      &__line, &__line::before, &__line::after
+        display: block
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translateX(-50%)
+        width: 20px
+        height: 2px
+        background: #4a526c
+      &__line
+        &::before
+          content: ''
+          margin-top: -5px
+        &::after
+          content: ''
+          margin-top: 3px
+
+      &__close
+        display: none
+        position: absolute
+        width: 30px
+        height: 30px
+        border-radius: 50%
+        border: none
+        top: 5px
+        left: auto
+        right: -30px
+        background: transparent
+
+      &__active &__line
+        background: transparent
+        &::before
+          left: 0
+          top: 0
+          transform: rotate(-135deg)
+          margin-top: 0
+        &::after
+          left: 0
+          top: 0
+          transform: rotate(135deg)
+          margin-top: 0
+
+      &__list
+        display: flex
+      &__item
+        margin-right: 35px
+        text-align: center
+        &:last-child
+          margin-right: 0
+      &__link
+        position: relative
+        text-align: center
+        font-size: 13px
+        font-weight: 700
+        text-transform: uppercase
+        color: $text-color-light
+        cursor: pointer
+        transition: all .5s ease
+        &::after
+          display: block
+          position: absolute
+          top: 6px
+          right: -13px
+          content: ''
+          width: 8px
+          height: 5px
+          background: url("../img/header/nav-arrow.svg") center 0 no-repeat
+          background-size: 100%
+        &:hover
+          text-decoration: none
+          color: lighten($active-color, 0.5)
+
+  /*END Navigation*/
+
+  /*Content*/
+  &-content
+    position: relative
+    padding-top: 60px
+    padding-bottom: 100px
+    &__title
+      margin-bottom: 50px
+      font-size: 48px
+      font-weight: 700
+      line-height: 2
+      text-align: center
+      color: $text-color-light
+      text-transform: uppercase
+    &__video
+      width: 100%
+      height: 100%
+    &__down
+      display: block
+      position: absolute
+      bottom: 30px
+      left: 50%
+      transform: translateX(-50%)
+
+
+
+  &-info
+      &__header
+        padding: 20px 0 16px 0
+      &__title
+        font-size: 19px
+      &__content
+        padding: 0
+        background: rgba($text-color-light, 0.7)
+
+  &-social
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    right: 15px
+    display: flex
+    flex-direction: column
+    &__link
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-bottom: 5px
+
+      width: 46px
+      height: 46px
+      font-size: 20px
+
+      color: $text-color-light
+      &:hover
+        color: $text-color-light
+      &:last-child
+        margin-bottom: 0
+
+      &-instagram
+        background: #57a1d0
+        &:hover
+          background: lighten(#57a1d0,5)
+      &-vk
+        background: #4984ad
+        &:hover
+          background: lighten(#4984ad, 5)
+      &-message
+        background: #e93b3b
+        &:hover
+          background: lighten(#e93b3b, 5)
+
+
+
+/*END Header*/
