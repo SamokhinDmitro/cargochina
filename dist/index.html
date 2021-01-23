@@ -1,0 +1,1760 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KargoRu</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/ico">
+
+
+    <style>
+        @font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Light.eot);src:local("Open Sans Light"),local("OpenSans-Light"),url(fonts/OpenSans-Light.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Light.woff) format("woff"),url(fonts/OpenSans-Light.ttf) format("truetype");font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Regular.eot);src:local("Open Sans Regular"),local("OpenSans-Regular"),url(fonts/OpenSans-Regular.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Regular.woff) format("woff"),url(fonts/OpenSans-Regular.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Bold.eot);src:local("Open Sans Bold"),local("OpenSans-Bold"),url(fonts/OpenSans-Bold.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Bold.woff) format("woff"),url(fonts/OpenSans-Bold.ttf) format("truetype");font-weight:700;font-style:normal;font-display:swap}*,:after,:before{box-sizing:border-box}body{position:relative;font-family:'Open Sans',sans-serif;font-size:14px;font-weight:400;background:pink;color:#3a3a3a}body{margin:0}p{margin:0}h1,h2,h3,h4,h5{margin:0;font-weight:400}a:hover{text-decoration:none}img{max-width:100%;height:auto}button:focus,div:focus,input:focus,textarea:focus{outline:0}ul{margin:0;padding:0;list-style:none}.hidden{display:none}section{padding:50px 0}.section-title{text-align:center;font-size:30px;line-height:1.3}.section-subtitle{text-align:center;margin-top:12px;font-size:19px;font-weight:300;line-height:1.2}.section-subtitle span{text-transform:uppercase}.button{display:block;padding:22px 33px;color:#fff;font-size:14px;text-transform:uppercase;background:#e93b3b;border-radius:5px;border:1px solid transparent;transition:all .5s ease}.button:hover{cursor:pointer;background:#d91818}.button-o{padding:15px 21px;font-size:12px;background:0 0;color:#e93b3b;border:1px solid #e93b3b;transition:all .5s ease}.button-o:hover{background:#e93b3b;color:#fff}.button_up{display:none;padding:8px;position:fixed;right:3%;bottom:40px;z-index:997}.dark-bg{position:relative;z-index:2}.dark-bg::before{position:absolute;display:block;content:'';width:100%;height:100%;left:0;top:0;background:rgba(37,51,60,.3);z-index:-1}.row-flex{display:flex;flex-wrap:wrap}.row-flex [class*=col-]{margin-bottom:30px}.info-block{text-align:center;min-height:400px}.info-block__header{padding:24px 0 22px 0;text-transform:uppercase;color:#fff;background:#25333c}.info-block__title{font-size:16px;font-weight:700;line-height:1.4}.info-block__content{position:relative;padding:12px 0 25px;background:#fff}.info-block__content-title{font-size:18px;text-transform:uppercase;line-height:1.2}.info-block__content-subtitle{display:block;font-size:25px;font-weight:700;color:#e93b3b}.info-block__img{margin-bottom:5px}.form{padding:10px 17px 20px 17px;display:flex;width:100%;flex-direction:column;justify-content:center;align-items:center}.form__group{display:flex;flex-direction:column;margin-right:10px}.form__group:last-child{margin-right:0}.form__row{margin-bottom:25px;display:flex;width:100%;justify-content:space-around}.form__row-wrap{display:flex;flex-direction:row;justify-content:space-around}.form__small{margin-top:15px;display:block;text-align:center;font-size:14px;font-weight:300;line-height:1.2}.form__input,.form__textarea{position:relative;min-width:281px;width:100%;margin-bottom:3px;padding:20px 21px;font-family:'Open Sans',sans-serif;font-size:14px;font-weight:400;background:#fff;border:1px solid #c1c4c7}.form__input::-webkit-input-placeholder,.form__textarea::-webkit-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::-moz-placeholder,.form__textarea::-moz-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input:-ms-input-placeholder,.form__textarea:-ms-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::-ms-input-placeholder,.form__textarea::-ms-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::placeholder,.form__textarea::placeholder{color:#616467;font-size:13px;font-weight:300}.form__input-small,.form__textarea-small{min-width:auto;text-align:center;max-width:71px;margin-bottom:0;padding:15px 10px}.form__label{margin-bottom:5px;font-size:16px;font-weight:700}.form__label-small{margin-bottom:0;font-size:14px;font-weight:400}.form__button{margin-top:15px}.form__custom-select{display:none;position:absolute}.form__dropdown{position:relative;max-width:260px;width:100%;display:flex;border:1px solid #c1c4c7;background:#fff}.form__dropdown-button{display:block;padding:0;text-align:center;width:38px;height:auto;background:#f3f3f3;border:none;transition:all .5s ease}.form__dropdown-button:hover{cursor:pointer;background:#e9e9e9}.form-select{cursor:pointer}.form-select__title{position:relative;min-width:226px;width:100%;padding:19px 23px;border:1px solid transparent;border-right:1px solid #c1c4c7;font-size:13px;font-weight:300;line-height:1}.form-select__dropdown{min-width:226px;position:absolute;left:-1px;right:-1px;top:100%;border:1px solid #c1c4c7;z-index:55;overflow-x:hidden;background:#fff;height:95px}.form-select__item{padding:5px 23px;background:#fff}.form-select__item:hover{cursor:pointer;background:#e9e9e9}.social-block{display:flex;flex-direction:row;font-size:18px}.social-block__link{margin-right:10px;display:flex;justify-content:center;align-items:center;width:36px;height:36px;border:1px solid #d3d6d8;border-radius:4px;color:#d3d6d8;transition:all .5s ease}.social-block__link:last-child{margin-right:0}.social-block__link:hover{color:#fff;border:1px solid #fff}.warning{position:relative;width:100%;display:block;font-size:12px;z-index:10}.iframe{width:100%;height:100%}.header-top{padding:8px 0;background:#25333c}.header-top__button{display:block;text-transform:uppercase;padding:10px 14px;background:0 0;color:#d3d6d8;border:1px solid #d3d6d8;cursor:pointer;transition:all .5s ease}.header-top__button:hover{color:#fff;border-color:#fff}.header-top__delivery{display:flex;justify-content:space-between}.header-top__phones{display:flex;justify-content:space-between}.header-top__link{display:block;color:#d3d6d8}.header-top__link img{margin-right:10px}.header-top__link:hover{color:#fff}.header-wrap{background:#626180 url(img/header/header_bg.jpg) center 0 no-repeat;background-size:cover}.header-main{padding:15px 0 12px 0;border-bottom:1px solid #fff}.header-logo{display:flex;justify-content:center;align-items:center}.header-logo__img{flex-shrink:0;margin-right:10px}.header-logo__text{text-transform:uppercase;color:#fff}.header-logo__title{display:block;font-size:27px;font-weight:700}.header-logo__descr{font-size:12px}.header-navigation__btn{display:none;position:relative;width:30px;height:30px;background:#d3d6d8;border-radius:5px;transition:all .5s ease}.header-navigation__btn:hover{box-shadow:1px 1px 10px rgba(0,0,0,.4)}.header-navigation__line,.header-navigation__line::after,.header-navigation__line::before{display:block;position:absolute;top:50%;left:50%;transform:translateX(-50%);width:20px;height:2px;background:#4a526c}.header-navigation__line::before{content:'';margin-top:-5px}.header-navigation__line::after{content:'';margin-top:3px}.header-navigation__close{display:none;position:absolute;width:30px;height:30px;border-radius:50%;border:none;top:5px;left:auto;right:-30px;background:0 0}.header-navigation__active .header-navigation__line{background:0 0}.header-navigation__active .header-navigation__line::before{left:0;top:0;transform:rotate(-135deg);margin-top:0}.header-navigation__active .header-navigation__line::after{left:0;top:0;transform:rotate(135deg);margin-top:0}.header-navigation__list{display:flex}.header-navigation__item{margin-right:35px;text-align:center}.header-navigation__item:last-child{margin-right:0}.header-navigation__link{position:relative;text-align:center;font-size:13px;font-weight:700;text-transform:uppercase;color:#fff;cursor:pointer;transition:all .5s ease}.header-navigation__link::after{display:block;position:absolute;top:6px;right:-13px;content:'';width:8px;height:5px;background:url(img/header/nav-arrow.svg) center 0 no-repeat;background-size:100%}.header-navigation__link:hover{text-decoration:none;color:#e93d3d}.header-content{position:relative;padding-top:60px;padding-bottom:100px}.header-content__title{margin-bottom:50px;font-size:48px;font-weight:700;line-height:2;text-align:center;color:#fff;text-transform:uppercase}.header-content__video{width:100%;height:100%}.header-content__down{display:block;position:absolute;bottom:30px;left:50%;transform:translateX(-50%)}.header-info__header{padding:20px 0 16px 0}.header-info__title{font-size:19px}.header-info__content{padding:0;background:rgba(255,255,255,.7)}.header-social{position:absolute;top:50%;transform:translateY(-50%);right:15px;display:flex;flex-direction:column}.header-social__link{display:flex;align-items:center;justify-content:center;margin-bottom:5px;width:46px;height:46px;font-size:20px;color:#fff}.header-social__link:hover{color:#fff}.header-social__link:last-child{margin-bottom:0}.header-social__link-instagram{background:#57a1d0}.header-social__link-instagram:hover{background:#6bacd6}.header-social__link-vk{background:#4984ad}.header-social__link-vk:hover{background:#5790b8}.header-social__link-message{background:#e93b3b}.header-social__link-message:hover{background:#ec5252}
+    </style>
+
+</head>
+<body>
+
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <button class="header-top__button">
+                        <span class="d-none d-md-block">Translate</span>
+                        <img class="d-md-none" src="img/header/global.png" alt="Translate">
+                    </button>
+                </div>
+
+                <div class="col-6">
+                    <div class="header-top__delivery">
+                        <a  href="#calculation" class="header-top__link">
+                            <img src="img/header/header-calc.png" alt="Calculation delivery">
+                            <span class="hidden-mobile">Рассчитать доставку груза из Китая</span>
+                        </a>
+                        <!-- /.header-top__link -->
+
+                        <a  href="#order" class="header-top__link">
+                            <img src="img/header/header-search.png" alt="Search delivery">
+                            <span class="hidden-mobile">Проследить посылку из Китая</span>
+                        </a>
+                        <!-- /.header-top__link -->
+                    </div>
+                    <!-- /.header-top__delivery -->
+                </div>
+
+                <div class="col-4">
+                    <div class="header-top__phones">
+                        <a  href="tel:+380971234567" class="header-top__link">
+                            <img src="img/header/phone.png" alt="phone">
+                            <span class="hidden-mobile">800 70 00 842</span>
+                        </a>
+                        <!-- /.header-top__link -->
+
+                        <a  href="mailto:88007000842@1kargo.ru" class="header-top__link">
+                            <img src="img/header/header-search.png" alt="Search delivery">
+                            <span class="hidden-mobile">8007000842@kargo.ru</span>
+                        </a>
+                        <!-- /.header-top__link -->
+                    </div>
+                    <!-- /.header-top__delivery -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.header-top -->
+
+    <div class="header-wrap dark-bg">
+
+        <div class="header-main">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-4 align-items-center">
+                        <div class="header-wraps">
+                                <div class="header-logo order-2">
+                                    <div class="header-logo__img">
+                                        <img src="img/header/header-logo.png" alt="Логотип">
+                                    </div>
+
+                                    <div class="header-logo__text">
+                                        <span class="header-logo__title">1kargo.ru</span>
+                                        <span class="header-logo__descr">перевозки из китая в россию</span>
+                                    </div>
+
+                                </div>
+
+                            <a href="#nav" class="header-navigation__btn  order-1">
+                                <span class="header-navigation__line"></span>
+                            </a>
+                            <!-- /.header-logo -->
+                        </div>
+                        <!-- /.header-wraps -->
+                    </div>
+
+                    <div class="d-md-block col-md-12 col-lg-8 col-xl-7 offset-xl-1">
+                        <nav class="header-navigation">
+                            <button class="header-navigation__close">
+                                <span class="header-navigation__line header-navigation__line-close"></span>
+                            </button>
+                            <ul class="header-navigation__list">
+
+                                <li class="header-navigation__item">
+                                    <a href="#" class="header-navigation__link">Главная</a>
+
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+                                <li class="header-navigation__item">
+                                    <a href="#offer" class="header-navigation__link">Доставка</a>
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+                                <li class="header-navigation__item">
+                                    <a href="#upsell" class="header-navigation__link">Услуги в Китае</a>
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+                                <li class="header-navigation__item">
+                                    <a href="#schema" class="header-navigation__link">Инфо</a>
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+                                <li class="header-navigation__item">
+                                    <a href="#news" class="header-navigation__link">Новости</a>
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+                                <li class="header-navigation__item">
+                                    <a href="#questions" class="header-navigation__link">Контакты</a>
+                                    <!-- /.header-navigation__link -->
+                                </li>
+                                <!-- /.header-navigation__item -->
+
+
+                            </ul>
+                            <!-- /.header-navigation__list -->
+                        </nav>
+                        <!-- /.header-navigation -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.header-main -->
+
+        <div class="header-content">
+            <div class="container">
+                <h1 class="header-content__title">перевозки из китая в россию!</h1>
+
+                <div class="row align-self-center">
+                    <div class="col-12 order-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-0 order-xl-1">
+                        <div class="header-info info-block">
+                            <div class="header-info__header info-block__header">
+                                <h2 class="header-info__title  info-block___title">
+                                    Оставьте заявку
+                                </h2>
+                                <!-- /.info-block___title -->
+
+                                <p class="info-block__descr">
+                                    на расчет стоимости доставки
+                                </p>
+                                <!-- /.form-header__descr -->
+                            </div>
+                            <!-- /.info-block__header -->
+
+                            <div class="header-info__content info-block__content">
+
+                                <form data-form="client" action="#" method="post" class="form" id="header-form" name="headerForm">
+                                    <input data-rule="name" type="text" class="header-info__input form__input" placeholder="Ваше имя..." name="name">
+                                    <input data-rule="phone" type="tel" class="header-info__input form__input" placeholder="Ваш телефон..." name="phone">
+                                    <input data-rule="email" type="email" class="header-info__input form__input" placeholder="Ваш e-mail..." name="email">
+                                    <textarea data-rule="message"
+                                              name="message"
+                                              class="header-info__textarea form__textarea"
+                                              id="header-message" rows="1"
+                                              placeholder="Сообщение..."></textarea>
+
+                                    <button class="button form__button" type="submit">Отправить заявку</button>
+                                </form>
+                                <!-- /.form -->
+                            </div>
+                            <!-- /.info-block__content -->
+                        </div>
+                        <!-- /.info-block -->
+                    </div>
+
+                    <div class="col-12 order-1 col-lg-10 offset-lg-1 col-xl-8  offset-xl-0 order-xl-2">
+                        <div class="header-content__video">
+                            <iframe class="iframe" src="https://www.youtube.com/embed/c0-i8TSD6VM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-social">
+                    <a href="#"
+                       class="header-social__link header-social__link-instagram"
+                       title="Мы в Instagram"
+                    >
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#"
+                       class="header-social__link header-social__link-vk"
+                       title="Мы в Vk"
+                    >
+                        <i class="fab fa-vk"></i>
+                    </a>
+
+                    <a href="#"
+                       class="header-social__link header-social__link-message"
+                       title="Написать нам"
+                    >
+                        <i class="far fa-envelope"></i>
+                    </a>
+                </div>
+                <!-- /.header-social -->
+
+
+            </div>
+
+
+            <a href="#" class="header-content__down d-none d-md-block">
+                <img src="img/header/icon-bottom.svg" alt="Down">
+            </a>
+            <!-- /.header-content__down -->
+        </div>
+        <!-- /.header-content -->
+
+    </div>
+    <!-- /.header-wrap -->
+</header>
+<!-- /.header -->
+
+<section class="features" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="features-block">
+                    <div class="features-block__img">
+                        <img src="img/features/place.png" alt="Находимся в Китае">
+                    </div>
+                    <!-- /.features-block__img -->
+
+                    <h3 class="features-block__title">Находимся в Китае</h3>
+                    <!-- /.features-block__title -->
+
+                    <p class="features-block__descr">
+                        Это позволяет вести переговоры с поставщиками лично при встрече, а не по телефону
+                    </p>
+                    <!-- /.features-block__descr -->
+                </div>
+                <!-- /.features-block -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="features-block">
+                    <div class="features-block__img">
+                        <img src="img/features/sertificate.png" alt="Без посредников">
+                    </div>
+                    <!-- /.features-block__img -->
+
+                    <h3 class="features-block__title">Без посредников</h3>
+                    <!-- /.features-block__title -->
+
+                    <p class="features-block__descr">
+                        Это положительно влияет на стоимость товаров и скорость оформления заказа
+                    </p>
+                    <!-- /.features-block__descr -->
+                </div>
+                <!-- /.features-block -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="features-block">
+                    <div class="features-block__img">
+                        <img src="img/features/present.png" alt="Система скидок">
+                    </div>
+                    <!-- /.features-block__img -->
+
+                    <h3 class="features-block__title">Система скидок</h3>
+                    <!-- /.features-block__title -->
+
+                    <p class="features-block__descr">
+                        У нас существует система скидок для постоянных клиентов, которые приятно удивят Вас
+                    </p>
+                    <!-- /.features-block__descr -->
+                </div>
+                <!-- /.features-block -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="features-block">
+                    <div class="features-block__img">
+                        <img src="img/features/plane.png" alt="Свой чартер">
+                    </div>
+                    <!-- /.features-block__img -->
+
+                    <h3 class="features-block__title">Свой чартер</h3>
+                    <!-- /.features-block__title -->
+
+                    <p class="features-block__descr">
+                        Это гаранттия того, что Ваш товар не “потеряется” и быстро будет доставлен Вам
+                    </p>
+                    <!-- /.features-block__descr -->
+                </div>
+                <!-- /.features-block -->
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#features.features -->
+
+<section class="calculation" id="calculation">
+    <div class="container">
+        <h2 class="section-title calculation-title">
+            Калькулятор доставки
+        </h2>
+        <!-- /.section-title -->
+
+        <div class="calculation-wrap">
+            <form action="#" class="form calculation-form" name="calculationForm">
+
+                <div class="form__row">
+                    <div class="form__row-wrap">
+                        <div class="form__group">
+                            <label for="cargo-city-to" class="form__label">Выдача:</label>
+                            <!-- /.form__label -->
+
+                            <div class="form__dropdown" data-select>
+                                <div class="form-select">
+                                    <div data-select-title class="form-select__title">Пункт выдачи</div>
+
+                                    <div class="form-select__dropdown hidden"></div>
+                                    <!-- /.form-select__dropdown -->
+                                </div>
+                                <!-- /.form-select -->
+
+                                <button class="form__dropdown-button" type="button">
+                                    <img src="img/calculation/select-icon.png" alt="CalcBtn">
+                                </button>
+
+                            </div>
+                            <select class="form__custom-select" name="cargo-city-to" id="cargo-city-to">
+                                <option value="">Пункт выдачи</option>
+                            </select>
+                            <!-- /.form__dropdown -->
+                        </div>
+                        <!-- /.form__group -->
+
+                        <div class="form__group">
+                            <label for="cargo-type" class="form__label">Вид товара:</label>
+                            <!-- /.form__label -->
+
+                            <div class="form__dropdown" data-select>
+                                <div class="form-select">
+                                    <div data-select-title class="form-select__title">Тип товара</div>
+
+                                    <div class="form-select__dropdown hidden">
+                                    </div>
+                                    <!-- /.form-select__dropdown -->
+                                </div>
+                                <!-- /.form-select -->
+
+                                <button class="form__dropdown-button" type="button">
+                                    <img src="img/calculation/select-icon.png" alt="CalcBtn">
+                                </button>
+
+                            </div>
+                            <!-- /.form__dropdown -->
+
+                            <select class="form__custom-select" name="cargo-type" id="cargo-type">
+                                <option value="">Тип товара</option>
+                            </select>
+
+                        </div>
+                        <!-- /.form__group -->
+                    </div>
+
+                    <div class="form__row-wrap">
+                        <div class="form__group">
+                            <label for="cargo-city-from" class="form__label">Город отправки:</label>
+                            <!-- /.form__label -->
+
+                            <div class="form__dropdown" data-select>
+                                <div class="form-select">
+                                    <div data-select-title class="form-select__title">Город</div>
+
+                                    <div class="form-select__dropdown hidden"></div>
+                                    <!-- /.form-select__dropdown -->
+                                </div>
+                                <!-- /.form-select -->
+
+                                <button class="form__dropdown-button" type="button">
+                                    <img src="img/calculation/select-icon.png" alt="CalcBtn">
+                                </button>
+
+                            </div>
+                            <!-- /.form__dropdown -->
+
+                            <select class="form__custom-select" name="cargo-city-from" id="cargo-city-from">
+                                <option value="">Город</option>
+                            </select>
+
+                        </div>
+                        <!-- /.form__group -->
+
+                        <div class="form__group">
+                            <label for="cargo-option" class="form__label">Вариант отправки:</label>
+                            <!-- /.form__label -->
+
+                            <div class="form__dropdown" data-select>
+                                <div class="form-select">
+                                    <div data-select-title="" class="form-select__title">Вариант отправки</div>
+
+                                    <div class="form-select__dropdown hidden">
+                                    </div>
+                                    <!-- /.form-select__dropdown -->
+                                </div>
+                                <!-- /.form-select -->
+
+                                <button class="form__dropdown-button" type="button">
+                                    <img src="img/calculation/select-icon.png" alt="CalcBtn">
+                                </button>
+
+                            </div>
+                            <!-- /.form__dropdown -->
+
+                            <select class="form__custom-select" name="cargo-option" id="cargo-option">
+                                <option value="">Вариант отправки</option>
+                            </select>
+
+                        </div>
+                        <!-- /.form__group -->
+                    </div>
+
+                </div>
+
+                <h4 class="form__label calculation-form__label">Ввод данных:</h4>
+                <div class="form__row calculation-form__row">
+                    <div class="form__row-wrap calculation-form__row-wrap">
+                        <div class="form__group calculation-form__group">
+                            <label for="cargo-length" class="form__label form__label-small calculation-form__label-small" title="Длина">Габариты груза (см):</label>
+                            <input type="number" class="form__input form__input-small" name="cargo-length" id="cargo-length" placeholder="0" title="Длина">
+                            <!-- /.form__label -->
+                        </div>
+
+
+                        <div class="form__group calculation-form__group">
+                            <label for="cargo-width" class="form__label form__label-small calculation-form__label-small" title="Ширина">x</label>
+                            <input type="number" class="form__input form__input-small" name="cargo-width" id="cargo-width" placeholder="0" title="Ширина">
+                            <!-- /.form__label -->
+                        </div>
+                        <!-- /.form__group -->
+
+                        <div class="form__group calculation-form__group">
+                            <label for="cargo-height" class="form__label form__label-small calculation-form__label-small" title="Высота">x</label>
+                            <input type="number" class="form__input form__input-small" name="cargo-height" id="cargo-height" placeholder="0" title="Высота">
+                            <!-- /.form__label -->
+                        </div>
+                        <!-- /.form__group -->
+                        </div>
+                        <!-- /.form__row-wrap -->
+
+                    <div class="form__row-wrap calculation-form__row-wrap">
+                        <div class="form__group calculation-form__group">
+                            <label for="cargo-width" class="form__label form__label-small calculation-form__label-small">Вес</label>
+                            <input type="number"
+                                   class="form__input form__input-small calculation-form__input"
+                                   name="cargo-weight"
+                                   id="cargo-weight"
+                                   title="Вес"
+                                   placeholder="кг">
+                            <!-- /.form__label -->
+                        </div>
+                        <!-- /.form__group -->
+
+                        <div class="form__group calculation-form__group">
+                            <label for="cargo-width" class="form__label form__label-small calculation-form__label-small">Объем:</label>
+                            <input type="number"
+                                   class="form__input form__input-small calculation-form__input"
+                                   id="cargo-volume"
+                                   name="cargo-volume"
+                                   title="Объем"
+                                   placeholder="см">
+                            <!-- /.form__label -->
+                        </div>
+                        <!-- /.form__group -->
+                    </div>
+                    <!-- /.form__row-wrap -->
+                </div>
+                <!-- /.form__row -->
+
+                <button class="button form__button calculation-form__button" type="submit">рассчитать</button>
+            </form>
+        </div>
+        <!-- /.calculation-form -->
+    </div>
+</section>
+<!-- /#calculation.calculation -->
+
+<section class="offer" id="offer">
+    <div class="container">
+        <h2 class="section-title">Доставка. Горячее предложение!</h2>
+        <p class="section-subtitle offer-subtitle">Оставьте заявку на <span>бесплатный</span> расчет стоимости доставки</p>
+
+        <div class="row">
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-lg-4 offset-lg-0">
+                <div class="info-block offer-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            Экспресс Доставка
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content offer-block__content">
+
+                        <div class="info-block__img offer-block__img">
+                            <img src="img/offer/offer-plane.png" alt="Экспресс Доставка">
+                        </div>
+
+                        <h4 class="info-block__content-title">за 9 дней из Гуанчжоу</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <span class="info-block__content-subtitle">9&#36;-1кг</span>
+
+                        <form data-form="client" action="#" method="post" class="form offer-form" id="express-form" name="expressForm">
+                            <input type="text" data-rule="name" class="form__input offer-form__input" placeholder="Ваше имя..." name="name">
+                            <input type="tel" data-rule="phone" class=" form__input offer-form__input" placeholder="Ваш телефон..." name="phone">
+                            <input type="email" data-rule="email" class="form__input offer-form__input" placeholder="Ваш e-mail..." name="email">
+
+                            <button class="button form__button" type="submit">Отправить заявку</button>
+
+                            <span class="form__small">Наш менеджер перезвонит Вам
+в ближайшее время</span>
+                        </form>
+                        <!-- /.form -->
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block -->
+            </div>
+            <!-- /.col-12 col-sm-4 -->
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-lg-4 offset-lg-0">
+                <div class="info-block offer-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            АВТО-Ж.Д. Доставка
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content offer-block__content">
+
+                        <div class="info-block__img offer-block__img">
+                            <img src="img/offer/offer-train.png" alt="АВТО-Ж.Д. Доставка">
+                        </div>
+
+                        <h4 class="info-block__content-title">за 18 дней из Гуанчжоу</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <span class="info-block__content-subtitle">3&#36;-1кг</span>
+
+                        <form data-form="client" action="#" method="post" class="form offer-form" id="train-form" name="trainForm">
+                            <input type="text" data-rule="name" class="form__input offer-form__input" placeholder="Ваше имя..." name="name" >
+                            <input type="tel" data-rule="phone" class=" form__input offer-form__input" placeholder="Ваш телефон..." name="phone">
+                            <input type="email" data-rule="email" class="form__input offer-form__input" placeholder="Ваш e-mail..." name="email">
+
+                            <button class="button form__button" type="submit">Отправить заявку</button>
+
+                            <span class="form__small">Наш менеджер перезвонит Вам
+в ближайшее время</span>
+                        </form>
+                        <!-- /.form -->
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block -->
+            </div>
+            <!-- /.col-12 col-sm-4 -->
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-lg-4 offset-lg-0">
+                <div class="info-block offer-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            Доставка Морем
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content offer-block__content">
+
+                        <div class="info-block__img offer-block__img">
+                            <img src="img/offer/offer-train.png" alt="Доставка Морем">
+                        </div>
+
+                        <h4 class="info-block__content-title">за 35 дней из иу</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <span class="info-block__content-subtitle">2&#36;-1кг</span>
+
+                        <form data-form="client" action="#" method="post" class="form offer-form" id="sea-form" name="seaForm">
+                            <input type="text" data-rule="name" class="form__input offer-form__input" placeholder="Ваше имя..." name="name">
+                            <input type="tel" data-rule="phone" class=" form__input offer-form__input" placeholder="Ваш телефон..." name="phone">
+                            <input type="email" data-rule="email" class="form__input offer-form__input" placeholder="Ваш e-mail..." name="email">
+
+                            <button class="button form__button" type="submit">Отправить заявку</button>
+
+                            <span class="form__small">Наш менеджер перезвонит Вам
+в ближайшее время</span>
+                        </form>
+                        <!-- /.form -->
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block -->
+            </div>
+            <!-- /.col-12 col-sm-4 -->
+        </div>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#offer.offer -->
+
+<section class="company company__agent dark-bg company-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="company-block">
+                    <div class="company-block__img">
+                        <img src="img/company/agent.png" alt="Agent">
+                    </div>
+                    <!-- /.company-block__img -->
+
+                    <h2 class="section-title company-block__title">Агент в Китае</h2>
+                    <p class="section-subtitle company-block__descr">
+                        Русскоговорящие представители компании без труда найдут именно тот товар, который будет отвечать Вашим запросам как по качеству, так и по цене.
+                    </p>
+                    <!-- /.company-block__descr -->
+                </div>
+                <!-- /.company-block -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.company.company__agent -->
+
+<section class="best" id="best">
+    <div class="container">
+        <h2 class="section-title">Почему мы лучшие?</h2>
+        <p class="section-subtitle best-subtitle">7 ПРИЧИН работать с нами!</p>
+
+        <div class="best-timeline">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+                                <span class="best-block__number hidden-mobile">
+                                    1
+                                </span>
+                                <!-- /.best-block__number -->
+                                <div class="best-block__img">
+                                    <img src="img/best/sertificate.png" alt="Работаем без посредников">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Работаем без посредников</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Мы работаем напрямую с крупнейшими поставщиками и производителями из Китая
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    2
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/cargo.png" alt="Отправка груза">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Грузы отправляются каждый день в Россию</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Мы не ждем когда наполнится контейнер или попадется попутный транспорт для доставки
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    3
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/place.png" alt="Находимся в Китае">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Находимся в Китае</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Дешевле доставка до склада (Пять офисов : Пекин / Гуанчжоу / Урумчи / Манчжурия / Иу )
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    4
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/present.png" alt="Система скидок">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Гибкая система скидок. Без переплат</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        У нас существует система скидок для постоянных клиентов, которые приятно удивят Вас
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    5
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/callback.png" alt="Личный менеджер «Русский сервис»">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Личный менеджер «Русский сервис»</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Все наши менеджеры свобно разговаривают на русском языке, что гарантирует полное взаимопонимание
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    6
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/plane.png" alt="Свой чартер. самолет Пекин-Москва">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Свой чартер. самолет Пекин-Москва</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Это гаранттия того, что Ваш товар не “потеряется” и быстро будет доставлен Вам
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                        <div class="col-12 col-md-6 best-timeline__wrap">
+                            <div class="best-block">
+
+                                 <span class="best-block__number hidden-mobile">
+                                    7
+                                </span>
+                                <!-- /.best-block__number -->
+
+                                <div class="best-block__img">
+                                    <img src="img/best/exchange.png" alt="Перерасчет стоимости в случае задержки">
+                                </div>
+                                <!-- /.best-block__img -->
+
+                                <div class="best-block__text">
+                                    <h3 class="best-block__title">Перерасчет стоимости в случае задержки</h3>
+                                    <!-- /.best-block__title -->
+
+                                    <p class="best-block__descr">
+                                        Мы заботимся о финансах наших клиентов и поэтому если из-за форс мажора происходит задержка груза, восполняем их
+                                    </p>
+                                </div>
+                                <!-- /.best-block__text -->
+                            </div>
+                            <!-- /.best-block -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.timeline -->
+
+    </div>
+</section>
+<!-- /#best.best -->
+
+<section class="review" id="review">
+    <div class="container">
+        <h2 class="section-title review-title">Отзывы наших клиентов</h2>
+
+        <div class="review-slider">
+
+            <div class="review-block">
+                <div class="review-block__img">
+                    <img src="img/review/person-1.png" alt="Client">
+                </div>
+
+                <h4 class="review-block__title">Ольга - директор тур.агентства </h4>
+                <!-- /.review-block__title -->
+
+                <a href="http://www.kurort_roman.ru" class="review-block__link">www.kurort_roman.ru</a>
+                <!-- /.review-block__link -->
+
+                <p class="review-block__descr">
+                    Спасибо менеджерам из «1Карго» за нашу свадьбу! Без вашей помощи мы бы не справились. Вы сэкономили нам кучу денег и нервов! Многие знают, сколько стоит организация этого немаловажного мероприятия. Особенно, если хочется, чтобы все прошло на высшем уровне. Нужно продумать 1000 мелочей, подобрать аксессуары для украшения зала, столов, номера для новобрачных. Мы подсчитали, что только за наряды жениха и невесты, а также родителей с обеих сторон придется выложить целое состояние и решили найти и заказать все в Китае.
+                </p>
+                <!-- /.review-block__descr -->
+
+                <p class="review-block__descr">
+                    Несколько вечеров проведенных за компьютером, и мы нашли все необходимое: от галстука жениху до шпилек и перчаток невесте. Ребята из «1Карго» отнеслись к нашему заказу так ответственно, будто речь шла об их собственной свадьбе. Они подкинули нам идею выбрать одинаковые платья подружкам невесты и милые детские костюмчики для самых маленьких участников церемонии. Кроме того Настя посоветовала мне подбирать украшения и аксессуары определенных цветов, чтобы у нас получились очень стильные фотографии. В итоге у нас состоялась бело-бирюзовая свадьба. В этих тонах у нас были украшены машины, подобраны салфетки, ленты, воздушные шары и даже лепестки роз! А так как весит это все очень немного, то мы порадовались низкой цене за доставку. Пришло все тоже очень быстро. Поэтому у нас осталось достаточно времени, чтобы все примерить и подогнать некоторые наряды по фигуре.
+                </p>
+                <!-- /.review-block__descr -->
+            </div>
+            <!-- /.review-block -->
+
+            <div class="review-block">
+                <div class="review-block__img">
+                    <img src="img/review/person-1.png" alt="Client">
+                </div>
+
+                <h4 class="review-block__title">Ольга - директор тур.агентства </h4>
+                <!-- /.review-block__title -->
+
+                <a href="http://www.kurort_roman.ru" class="review-block__link">www.kurort_roman.ru</a>
+                <!-- /.review-block__link -->
+
+                <p class="review-block__descr">
+                    Спасибо менеджерам из «1Карго» за нашу свадьбу! Без вашей помощи мы бы не справились. Вы сэкономили нам кучу денег и нервов! Многие знают, сколько стоит организация этого немаловажного мероприятия. Особенно, если хочется, чтобы все прошло на высшем уровне. Нужно продумать 1000 мелочей, подобрать аксессуары для украшения зала, столов, номера для новобрачных. Мы подсчитали, что только за наряды жениха и невесты, а также родителей с обеих сторон придется выложить целое состояние и решили найти и заказать все в Китае.
+                </p>
+                <!-- /.review-block__descr -->
+
+                <p class="review-block__descr">
+                    Несколько вечеров проведенных за компьютером, и мы нашли все необходимое: от галстука жениху до шпилек и перчаток невесте. Ребята из «1Карго» отнеслись к нашему заказу так ответственно, будто речь шла об их собственной свадьбе. Они подкинули нам идею выбрать одинаковые платья подружкам невесты и милые детские костюмчики для самых маленьких участников церемонии. Кроме того Настя посоветовала мне подбирать украшения и аксессуары определенных цветов, чтобы у нас получились очень стильные фотографии. В итоге у нас состоялась бело-бирюзовая свадьба. В этих тонах у нас были украшены машины, подобраны салфетки, ленты, воздушные шары и даже лепестки роз! А так как весит это все очень немного, то мы порадовались низкой цене за доставку. Пришло все тоже очень быстро. Поэтому у нас осталось достаточно времени, чтобы все примерить и подогнать некоторые наряды по фигуре.
+                </p>
+                <!-- /.review-block__descr -->
+            </div>
+            <!-- /.review-block -->
+        </div>
+        <!-- /.review-slider -->
+
+    </div>
+</section>
+<!-- /#review.review -->
+
+<section class="company company__manager  dark-bg company-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="company-block">
+                    <div class="company-block__img">
+                        <img src="img/company/manager.png" alt="Менеджер">
+                    </div>
+                    <!-- /.company-block__img -->
+
+                    <h2 class="section-title company-block__title">Менеджеры компании</h2>
+                    <p class="section-subtitle company-block__descr">
+                        Подберут для Вас оптимальную схему грузоперевозки. Проведут контроль закупок, организуют прямые
+                        поставки от завода-изготовителя.
+                    </p>
+                    <!-- /.company-block__descr -->
+                </div>
+                <!-- /.company-block -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.company.company__manager -->
+
+<section class="delivery" id="delivery">
+    <div class="container">
+        <h2 class="section-title delivery-title">Способы доставки груза</h2>
+        <div class="row">
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-3">
+                <div class="info-block delivery-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            Поезд
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content delivery-block__content">
+
+                        <div class="info-block__img delivery-block__img">
+                            <img src="img/delivery/train.png" alt="Поезд">
+                        </div>
+
+                        <h4 class="info-block__content-title delivery-block__content-title">23-28 дней</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <button class="button button-o">узнать подробнее</button>
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block delivery-block -->
+            </div>
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-3">
+                <div class="info-block delivery-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            БЫСТРЫЙ поезд
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content delivery-block__content">
+
+                        <div class="info-block__img delivery-block__img">
+                            <img src="img/delivery/fast-train.png" alt="Быстрый поезд">
+                        </div>
+
+                        <h4 class="info-block__content-title delivery-block__content-title">15-20 дней</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <button class="button button-o">узнать подробнее</button>
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block delivery-block -->
+            </div>
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-3">
+                <div class="info-block delivery-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            АВИА
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content delivery-block__content">
+
+                        <div class="info-block__img delivery-block__img">
+                            <img src="img/delivery/plane.png" alt="Авиа">
+                        </div>
+
+                        <h4 class="info-block__content-title delivery-block__content-title">7-11 дней</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <button class="button button-o">узнать подробнее</button>
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block delivery-block -->
+            </div>
+
+            <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-3">
+                <div class="info-block delivery-block">
+                    <div class="info-block__header">
+                        <h3 class="info-block__title">
+                            ЭКСПРЕСС ДОСТАВКА
+                        </h3>
+                        <!-- /.info-block___title -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="info-block__content delivery-block__content">
+
+                        <div class="info-block__img delivery-block__img">
+                            <img src="img/delivery/plane.png" alt="Экспресс доставка">
+                        </div>
+
+                        <h4 class="info-block__content-title delivery-block__content-title">4-7 дней</h4>
+                        <!-- /.info-block__content-title -->
+
+                        <button class="button button-o">узнать подробнее</button>
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block delivery-block -->
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- /#delivery.delivery -->
+
+<section class="order" id="order">
+    <div class="container">
+        <h2 class="section-title order-title">Проверка состояния заказа</h2>
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="calculation-wrap order-wrap">
+                    <form action="#" class="form order-form">
+                        <div class="form__row order-form__row">
+                            <input type="text" class="form__input order-form__input" placeholder="Код клиента" required>
+                            <input type="tel" class="form__input order-form__input" placeholder="Номер заказа" required>
+                        </div>
+
+                        <button class="button form__button order-form__button" type="submit">проверить</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- /#order.order -->
+
+<section class="managers" id="managers">
+    <div class="container">
+        <h2 class="section-title">
+            Наши менеджеры
+        </h2>
+        <!-- /.section-title managers-title -->
+
+        <div class="managers-slider">
+
+            <div class="managers-slider__item">
+                <img class="managers-slider__img" src="img/managers/managers-1.png" alt="Владимир">
+
+                <div class="managers-slider__text">
+                    <h3 class="managers-slider__title">Владимир</h3>
+                    <!-- /.managers-slider__title -->
+
+                    <p class="managers-slider__descr">Ответственный, надежный. Профессионал своего дела</p>
+                    <!-- /.managers-slider__descr -->
+                </div>
+                <!-- /.managers-slider__text -->
+            </div>
+            <!-- /.managers-slider__item -->
+
+            <div class="managers-slider__item">
+                <img class="managers-slider__img" src="img/managers/managers-2.png" alt="Анастасия">
+
+                <div class="managers-slider__text">
+                    <h3 class="managers-slider__title">Анастасия</h3>
+                    <!-- /.managers-slider__title -->
+
+                    <p class="managers-slider__descr">Первоклассный менеджер и хороший человек</p>
+                    <!-- /.managers-slider__descr -->
+                </div>
+                <!-- /.managers-slider__text -->
+            </div>
+            <!-- /.managers-slider__item -->
+
+            <div class="managers-slider__item">
+                <img class="managers-slider__img" src="img/managers/managers-3.png" alt="Сергей">
+
+                <div class="managers-slider__text">
+                    <h3 class="managers-slider__title">Сергей</h3>
+                    <!-- /.managers-slider__title -->
+
+                    <p class="managers-slider__descr">Подберу для вас лучший товар цена-качество. Родной язык китайский</p>
+                    <!-- /.managers-slider__descr -->
+                </div>
+                <!-- /.managers-slider__text -->
+            </div>
+            <!-- /.managers-slider__item -->
+
+            <div class="managers-slider__item">
+                <img class="managers-slider__img" src="img/managers/managers-4.png" alt="Андрей">
+
+                <div class="managers-slider__text">
+                    <h3 class="managers-slider__title">Андрей</h3>
+                    <!-- /.managers-slider__title -->
+
+                    <p class="managers-slider__descr">Опыт работы в Карго более 15 лет, знаю почти все</p>
+                    <!-- /.managers-slider__descr -->
+                </div>
+                <!-- /.managers-slider__text -->
+            </div>
+            <!-- /.managers-slider__item -->
+
+
+        </div>
+        <!-- /.managers-slider -->
+    </div>
+</section>
+<!-- /#managers.managers -->
+
+
+<section class="company company__personal dark-bg company-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="company-block">
+                    <div class="company-block__img">
+                        <img src="img/company/personal.png" alt="Персональный менеджер">
+                    </div>
+                    <!-- /.company-block__img -->
+
+                    <h2 class="section-title company-block__title">Для работы с клиентом назначается персональный менеджер!</h2>
+                    <p class="section-subtitle company-block__descr">
+                        Он разрабатывает схему перевозки и контролирует обработку груза на каждом этапе следования из Китая в Россию. Связавшись с менеджером, вы можете узнать, на каком этапе обработки находится Ваш груз.
+                    </p>
+                    <!-- /.company-block__descr -->
+                </div>
+                <!-- /.company-block -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.company.company__personal -->
+
+<section class="license" id="license">
+    <div class="container">
+        <h2 class="section-title license-title">
+            Наши лицензии и офис
+        </h2>
+        <!-- /.section-title license-title -->
+
+        <div class="license-slider">
+
+            <div class="license-slider__item">
+                <img src="img/license/license-1.jpg" alt="License-1">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-2.jpg" alt="License-2">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-3.jpg" alt="License-3">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-4.jpg" alt="License-4">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-5.jpg" alt="License-5">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-6.jpg" alt="License-6">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-7.jpg" alt="License-7">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-8.jpg" alt="License-8">
+            </div>
+            <!-- /.license-block -->
+
+            <div class="license-slider__item">
+                <img src="img/license/license-9.jpg" alt="License-9">
+            </div>
+            <!-- /.license-block -->
+        </div>
+        <!-- /.license-slider -->
+
+    </div>
+</section>
+<!-- /#license.license -->
+
+<section class="company company__place dark-bg company-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="company-block">
+                    <div class="company-block__img">
+                        <img src="img/company/place.png" alt="Местоположение">
+                    </div>
+                    <!-- /.company-block__img -->
+
+                    <h2 class="section-title company-block__title">Находимся в Китае</h2>
+                    <p class="section-subtitle company-block__descr">
+                        Три офиса : Пекин / Гуанчжоу / Шэньчжэнь <br>
+                        Наша деятельность лицензирована по всем законам КНР
+                    </p>
+                    <!-- /.company-block__descr -->
+                </div>
+                <!-- /.company-block -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.company.company__place -->
+
+<section class="schema" id="schema">
+    <div class="container">
+        <h2 class="section-title schema-title">
+            Как мы работаем?
+        </h2>
+        <!-- /.section-title schema-title -->
+
+        <div class="row row-flex">
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/application.png" alt="Заявка">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Заявка
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Вы оставляете заявку на сайте или звоните нам
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/selection.png" alt="Подбор производителя">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Подбор производителя
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Вы отправляете нам образец Вашего товара
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3 ">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/contract.png" alt="Заключение договора">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Заключение договора
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Заключаем профессионально подготовленный договор
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+
+            </div>
+            <!-- /.schema-block -->
+
+            <div class="col-12 col-md-6 col-lg-3 ">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/prepay.png" alt="Предоплата за товар">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Предоплата за товар
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Перечисляете предоплату удобным для Вас способом
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+
+            </div>
+
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/check.png" alt="Проверка товара">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Проверка товара
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Наши специалисты проверяют на заводе производителя товар
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/pay.png" alt="Полная оплата и страхование">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Полная оплата и страхование
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Производите полную оплату и страховку Вашего заказа
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/send.png" alt="Отправка товара">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Отправка товара
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Мы отправляем товар выбранным Вами способом
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="schema-block">
+                    <div class="schema-block__img">
+                        <img src="img/schema/tracking.png" alt="Отслеживание груза">
+                    </div>
+                    <!-- /.schema-block__img -->
+
+                    <h3 class="schema-block__title">
+                        Отслеживание груза
+                    </h3>
+                    <!-- /.schema-block__title -->
+
+                    <p class="schema-block__descr">
+                        Вы всегда видите где находится в данный момент Ваш груз
+                    </p>
+                    <!-- /.schema-block__descr -->
+                </div>
+                <!-- /.schema-block -->
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="schema-result">
+                    Подводя итог, результатом работы с нашей компанией будет выгода и безопасность. Вы получаете возможность использования широкого спектра услуг в одном комплексе.
+                </div>
+                <!-- /.schema-result -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /#schema.schema -->
+
+<section class="upsell" id="upsell">
+    <div class="container">
+        <h2 class="section-title upsell-title">Дополнительные услуги</h2>
+        <!-- /.section-title upsell-title -->
+
+        <div class="upsell-blocks">
+            <div class="upsell-block">
+                <div class="upsell-block__img">
+                    <img src="img/upsell/search.png" alt="Поиск поставщика">
+                </div>
+                <!-- /.upsell-block__img -->
+
+                <h3 class="upsell-block__title">Поиск поставщика</h3>
+                <!-- /.upsell-block__title -->
+            </div>
+            <!-- /.upsell-block -->
+
+            <div class="upsell-block">
+                <div class="upsell-block__img">
+                    <img src="img/upsell/inspector.png" alt="Инспекция">
+                </div>
+                <!-- /.upsell-block__img -->
+
+                <h3 class="upsell-block__title">Инспекция (проверка качества)</h3>
+                <!-- /.upsell-block__title -->
+            </div>
+            <!-- /.upsell-block -->
+
+            <div class="upsell-block">
+                <div class="upsell-block__img">
+                    <img src="img/upsell/buy.png" alt="Выкуп">
+                </div>
+                <!-- /.upsell-block__img -->
+
+                <h3 class="upsell-block__title">Выкуп с сайтов Taobao и Alibaba</h3>
+                <!-- /.upsell-block__title -->
+            </div>
+            <!-- /.upsell-block -->
+
+            <div class="upsell-block">
+                <div class="upsell-block__img">
+                    <img src="img/upsell/services.png" alt="Услуги">
+                </div>
+                <!-- /.upsell-block__img -->
+
+                <h3 class="upsell-block__title">Услуги переводчика в Китае</h3>
+                <!-- /.upsell-block__title -->
+            </div>
+            <!-- /.upsell-block -->
+
+            <div class="upsell-block">
+                <div class="upsell-block__img">
+                    <img src="img/upsell/tours.png" alt="Мебельные туры">
+                </div>
+                <!-- /.upsell-block__img -->
+
+                <h3 class="upsell-block__title">Мебельные туры</h3>
+                <!-- /.upsell-block__title -->
+            </div>
+            <!-- /.upsell-block -->
+        </div>
+        <!-- /.upsell-blocks -->
+
+    </div>
+
+</section>
+<!-- /#upsell.upsell -->
+
+
+<section class="news" id="news">
+   <div class="container">
+       <h2 class="section-title news-title">Новости</h2>
+       <!-- /.section-title news-title -->
+
+       <!--
+       <div class="row">
+           <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-4 offset-md-0">
+               <div class="news-block">
+                   <div class="news-block__img">
+                       <img src="img/news/news-1.jpg" alt="Срочные новости с границы">
+                   </div>
+
+                   <div class="news-block__content">
+
+                       <div class="news-block__date">
+                           <span class="news-block__day">23</span>
+                           <span class="news-block__month">Мая</span>
+                       </div>
+
+
+                       <div class="news-block__text">
+                           <h3 class="news-block__title">Срочные новости с границы!</h3>
+
+                           <p class="news-block__descr">
+                               «1 Карго» уведомляет вас о том, что на таможенных пропускных пунктах проходит совместная
+                               российско- казахская инспекция таможенных переходов России и Казахстана.
+                               Не исключено, что в связи с этим в ближайшее время произойдет повышение тарифных ставок
+                               на оформление грузов.
+                           </p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       -->
+   </div>
+
+</section>
+<!-- /#news.news -->
+
+
+<section class="questions dark-bg" id="questions">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1">
+                <div class="header-info info-block questions-info">
+                    <div class="header-info__header info-block__header">
+                        <h2 class="header-info__title  info-block___title">
+                            Остались вопросы?
+                        </h2>
+                        <!-- /.info-block___title -->
+
+                        <p class="info-block__descr">
+                            Напишите нам!
+                        </p>
+                        <!-- /.form-header__descr -->
+                    </div>
+                    <!-- /.info-block__header -->
+
+                    <div class="header-info__content info-block__content">
+
+                        <form data-form="client" action="#" method="post" class="form questions-form" id="questions-form" name="questionsForm">
+
+                            <div class="form-row questions-form__row">
+                                <input type="text" data-rule="name" class="form__input questions-form__input" placeholder="Ваше имя..." name="name">
+                                <input type="tel" data-rule="phone" class="form__input questions-form__input" placeholder="Ваш телефон..." name="phone">
+                                <input type="email" data-rule="email" class="form__input questions-form__input" placeholder="Ваш e-mail..." name="email">
+                            </div>
+                            <!-- /.form-row -->
+
+                            <textarea name="message"
+                                      data-rule="message"
+                                      class="form__textarea questions-form__textarea"
+                                      id="questions-message" rows="1"
+                                      placeholder="Сообщение..."></textarea>
+
+                            <button class="button form__button questions-form__button" type="submit">Отправить заявку</button>
+                        </form>
+                        <!-- /.form -->
+                    </div>
+                    <!-- /.info-block__content -->
+                </div>
+                <!-- /.info-block -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /#questions.questions -->
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="row align-items-center no-gutters">
+
+            <div class="col-12 col-sm-4 col-md-12 col-lg-3 col-xl-4 align-items-center">
+                <div class="header-wraps footer-wraps">
+                    <div class="header-logo">
+                        <div class="header-logo__img">
+                            <img src="img/header/header-logo.png" alt="Логотип">
+                        </div>
+
+                        <div class="header-logo__text">
+                            <span class="header-logo__title">1kargo.ru</span>
+                            <span class="header-logo__descr d-none d-md-block d-lg-none d-xl-block">перевозки из китая в россию</span>
+                        </div>
+
+                    </div>
+                    <!-- /.header-logo -->
+                </div>
+                <!-- /.header-wraps -->
+            </div>
+
+            <div class="col-6 col-sm-3 offset-sm-1 offset-md-0 col-md-12  col-lg-3 col-xl-4">
+                <div class="footer-delivery">
+                    <a  href="#calculation" class="header-top__link footer-link">
+                        <img src="img/header/header-calc.png" alt="Calculation delivery">
+                        <span class="hidden-mobile hidden-sm">Рассчитать доставку груза</span>
+                    </a>
+                    <!-- /.header-top__link -->
+
+                    <a  href="#order" class="header-top__link footer-link">
+                        <img src="img/header/header-search.png" alt="Search delivery">
+                        <span class="hidden-mobile hidden-sm">Проследить посылку из Китая</span>
+                    </a>
+                    <!-- /.header-top__link -->
+                </div>
+                <!-- /.header-top__delivery -->
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-12 col-lg-2">
+                <div class="footer-phones">
+                    <a  href="tel:+380971234567" class="header-top__link footer-link">
+                        <img src="img/header/phone.png" alt="phone">
+                        <span class="hidden-mobile hidden-sm">800 70 00 842</span>
+                    </a>
+                    <!-- /.header-top__link -->
+
+                    <a  href="mailto:88007000842@1kargo.ru" class="header-top__link footer-link">
+                        <img src="img/header/header-search.png" alt="Search delivery">
+                        <span class="hidden-mobile hidden-sm">80070008@kargo.ru</span>
+                    </a>
+                    <!-- /.header-top__link -->
+                </div>
+        </div>
+
+            <div class="col-md-12 col-lg-3 offset-lg-1 col-xl-2 offset-xl-0">
+                <div class="social-block">
+
+                    <a href="#" class="social-block__link" title="Мы в Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <!-- /.social-block__link -->
+
+                    <a href="#" class="social-block__link" title="Мы в WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <!-- /.social-block__link -->
+
+                    <a href="#" class="social-block__link" title="Мы в Viber">
+                        <i class="fab fa-viber"></i>
+                    </a>
+                    <!-- /.social-block__link -->
+
+                    <a href="#" class="social-block__link" title="Мы в Skype">
+                        <i class="fab fa-skype"></i>
+                    </a>
+                    <!-- /.social-block__link -->
+
+                    <a href="#" class="social-block__link" title="Написать Нам">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                    <!-- /.social-block__link -->
+
+
+
+                </div>
+                <!-- /.social-block -->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- /#footer.footer -->
+
+<div class="popup popup-result" id="popup-result">
+    <div class="popup-content popup-result-content">
+        <button class="popup-content__close">&times;</button>
+        <h2 class="popup-content__title popup-result-content__title">Стоимость доставки</h2>
+        <p class="popup-content__descr popup-result-content__descr">150 грн</p>
+    </div>
+    <!-- /.popup-content -->
+</div>
+
+
+
+
+
+
+
+
+
+<button class="button button_up">
+    <i class="fas fa-chevron-up"></i>
+</button>
+<!-- /.button.button-up -->
+
+
+<!-- Style -->
+<!-- Bootstrap -->
+<link rel="stylesheet" href="css/bootstrap-grid.min.css">
+<link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+
+<link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+
+<!-- Main Style -->
+<link rel="stylesheet" href="css/style.min.css">
+
+
+<!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" integrity="sha256-rsPUGdUPBXgalvIj4YKJrrUlmLXbOb6Cp7cdxn1qeUc=" crossorigin="anonymous"></script>
+
+<!-- Slick-Slider -->
+<link rel="stylesheet" href="plugins/slick/slick.css">
+<link rel="stylesheet" href="plugins/slick/slick-theme.css">
+<script src="plugins/slick/slick.min.js"></script>
+
+<!-- MaskedInput -->
+<script src="plugins/jquery.maskedinput.min.js"></script>
+<script src="js/mask.min.js"></script>
+<script src="js/modules/scrollTop.min.js"></script>
+<script src="js/modules/nextSection.min.js"></script>
+<script src="js/modules/navigation.min.js"></script>
+<script src="js/modules/validation.min.js"></script>
+<script src="js/modules/sendForm.min.js"></script>
+
+<script src="js/modules/popup.min.js"></script>
+<script src="js/modules/news.min.js"></script>
+<script src="js/calculation.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/slider.min.js"></script>
+</body>
+</html>
