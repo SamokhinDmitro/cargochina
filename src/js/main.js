@@ -33,6 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     	form.reset();
     });
 
+    //Заглушка для кнопок Блок delivery
+    const deliveryBtn = document.querySelectorAll('.delivery-block__button');
+    deliveryBtn.forEach(item => {
+       item.addEventListener('click', () => {
+           alert('Демо версия сайта!');
+       });
+    });
+
     /*Preloader News*/
     new News('.news');
     /*End Preloader News*/

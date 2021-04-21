@@ -1,37 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const apiKey = `04934ab23a2965497d012e4857e7527e`;
+    const apiUrl = `https://api.novaposhta.ua/v2.0/json/`;
     let calcForm = document.forms.calculationForm;
 
-    //Универсальный переключатель декоративных селектов и связь с реальным ++
+    const cityTo = calcForm.elements['cargo-city-to'];
+    const cityFrom = calcForm.elements['cargo-city-from'];
+    const cargoType = calcForm.elements['cargo-type'];
+    const cargoDelivery = calcForm.elements['cargo-option'];
+
+    //Универсальный переключатель декоративных селектов и связь с реальным
     const selectAllElements = document.querySelectorAll('[data-select]');
 
     selectAllElements.forEach(item => {
         item.setAttribute('tabindex', 0);
-        item.querySelector('.form-select__dropdown').style.overflowY = 'scroll';
-        item.addEventListener('click', function (event) {
-            //Реальный селект
-            const realSelect = this.nextElementSibling;
+       item.querySelector('.form-select__dropdown').style.overflowY = 'scroll';
 
-            if (event.target.hasAttribute('data-select-item')) {
-                //Клик по пунктам в dropdown
-                let itemTitle = event.target.getAttribute('data-select-item');
-                this.querySelector('[data-select-title]').textContent = event.target.textContent;
-                this.querySelector('.form-select__dropdown').classList.toggle('hidden');
+       item.addEventListener('click', function(event){
+           const realSelect = this.nextElementSibling;
 
+           //Клик по пунктам в dropdown
+           if(event.target.hasAttribute('data-select-item')){
+               let itemTitle = event.target.getAttribute('data-select-item');
+               this.querySelector('[data-select-title]').textContent = event.target.textContent;
+               this.querySelector('.form-select__dropdown').classList.toggle('hidden');
+               realSelect.value = itemTitle;
+           }else{
+               //Клик по заголовку
+               this.querySelector('.form-select__dropdown').classList.toggle('hidden');
+           }
 
-                realSelect.value = itemTitle;
-            } else {
-                //Клик по заголовку
-                this.querySelector('.form-select__dropdown').classList.toggle('hidden');
-            }
-
-        });
-
+       });
     });
 
-    //END Универсальный переключатель декоративных селектов и связь с реальным ++
-
-    //Вызов обработчика формы
+    //Обработкм формы
     processCalcForm(calcForm);
 
     //Обработка формы
@@ -97,8 +99,207 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    //Отправка формы - вычисление стоимости доставки
-    function sendCalcForm(event) {
+
+
+    //Проверка наличия cookies
+    const getCookie = name => {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    //Real option
+    const createOption = data => {
+        const option = document.createElement('option');
+        option.value = data.Ref;
+        option.innerText = data.Description
+        return option;
+    }
+
+    //Fake option
+    const createSelectItem = data => {
+        const selectItem = document.createElement('div');
+        selectItem.classList.add('form-select__item');
+        selectItem.setAttribute('data-select-item', data.Ref);
+        selectItem.textContent = data.Description;
+        return selectItem;
+    }
+
+    //Загрузка городов компании
+    const loadCity = async (url, data) => {
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(data), // тип данных в body должен соответвовать значению заголовка "Content-Type"})
+        })
+        return await response.json();
+    }
+
+    //Получение городов компании
+    const getCities = () => {
+        let date = new Date();
+        date = new Date(date.setDate(date.getDate() + 1));
+
+        //Ответ для сервера
+        const cityObj = {
+            "modelName": "Address",
+            "calledMethod": "getCities",
+            "methodProperties": {},
+            "apiKey": apiKey
+        };
+
+        loadCity(apiUrl, cityObj)
+            .then(data => {
+                //Формируем справочник городов компании
+                const cities = data.data.map(item => {
+                    const city = {
+                        Description: item.Description,
+                        Ref: item.Ref
+                    };
+                    return city;
+                });
+
+                //Готовый справочник городов компании
+                localStorage.setItem('cities', JSON.stringify(cities));
+                document.cookie = `${decodeURI('cities')} = ${decodeURI(true)}; expires = ${date}; path = /`;
+
+                checkKey('cities', cityTo);
+                checkKey('cities', cityFrom);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+
+    //Проверка наличия городов в справочнике
+    if(getCookie('cities') === undefined){
+        getCities();
+    }
+
+
+    //Тип груза
+    const cargoTypeObj = {
+        "modelName": "Common",
+        "calledMethod": "getCargoTypes",
+        "methodProperties": {},
+        "apiKey": apiKey
+    };
+
+    //Вид отправки
+    const deliveryTypeObj = {
+        "modelName": "Common",
+        "calledMethod": "getServiceTypes",
+        "apiKey": apiKey,
+        "methodProperties": {}
+    };
+
+    //Получение данных тип груза, вид отправки
+    const loadSubParams = async(url, obj) => {
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(obj), // тип данных в body должен соответвовать значению заголовка "Content-Type"})
+        })
+        return await response.json();
+    }
+
+    //Формируем списки тип доставки, тип груза
+    const getContentField = (elem, url, objParams) => {
+        loadSubParams(url, objParams)
+            .then(data => {
+                //Формруем список данных
+                data.data.forEach(item => {
+                    const option = createOption(item);
+                    elem.append(option);
+                });
+
+                //Формируем данные в декоративном селекте
+                if(elem.previousElementSibling.hasAttribute(['data-select'])){
+                    const select = elem.previousElementSibling.querySelector('.form-select__dropdown');
+                    select.style.overflowY = 'scroll';
+
+                    for(let i = 0; i < data.data.length; i++){
+                        const selectItem = createSelectItem(data.data[i]);
+                        select.append(selectItem);
+                    }
+                }
+            })
+    }
+
+    //Тип товара
+    getContentField(cargoType, apiUrl, cargoTypeObj);
+    //Вариант отправки
+    getContentField(cargoDelivery, apiUrl, deliveryTypeObj);
+
+    //Проверка данных в localstorage
+    const checkKey = (keyName, elem) => {
+        if (localStorage.getItem(keyName) !== null) {
+
+            const data = JSON.parse(localStorage.getItem(keyName));
+            //console.log(data);
+
+            //Формруем список данных
+            data.forEach(item => {
+                const option = createOption(item);
+                elem.append(option);
+            });
+
+            //Формируем данные в декоративном селекте
+            if (elem.previousElementSibling.hasAttribute(['data-select'])) {
+                const select = elem.previousElementSibling.querySelector('.form-select__dropdown');
+                select.style.overflowY = 'scroll';
+
+                for (let i = 0; i < data.length; i++) {
+                    const selectItem = createSelectItem(data[i]);
+                    select.append(selectItem);
+                }
+            }
+
+            //Live Search
+            let selectTitle = elem.previousElementSibling.querySelector('[data-select-title]');
+            selectTitle.setAttribute('contenteditable', true);
+
+            selectTitle.addEventListener('focus', function () {
+                this.textContent = '';
+            });
+
+            selectTitle.addEventListener('input', function () {
+                elem.previousElementSibling.querySelector('.form-select__dropdown').classList.remove('hidden');
+
+                let value = this.textContent.trim().toLowerCase();
+                let items = elem.previousElementSibling.querySelectorAll('.form-select__item');
+
+                if (value !== '') {
+                    items.forEach(item => {
+                        if (item.textContent.toLowerCase().search(value) == -1) {
+                            item.classList.add('hidden');
+                        } else {
+                            item.classList.remove('hidden');
+                        }
+                    });
+                } else {
+                    items.forEach(item => {
+                        item.classList.remove('hidden');
+                    });
+                }
+            });
+            //END Live Search
+        }
+    }
+
+    //Формирование списка городов из localStorage
+    checkKey('cities', cityTo);
+    checkKey('cities', cityFrom);
+
+
+    //Отправка формы
+    function sendCalcForm(event){
         event.preventDefault();
 
         //Формируем объект с данными формы
@@ -147,269 +348,23 @@ document.addEventListener('DOMContentLoaded', () => {
             "apiKey": apiKey
         };
 
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', 'https://api.novaposhta.ua/v2.0/json/');
-
-        xhr.setRequestHeader('Content-type', 'application/json; charset = utf-8');
-
-        //Отправка данных на сервер
-        xhr.send(JSON.stringify(obj));
-
-        //проверяем состояние запроса
-        xhr.addEventListener('readystatechange', function () {
-            if (xhr.readyState < 4) {
-
-            } else if (xhr.readyState === 4 && xhr.status === 200) {
-
-                let data = JSON.parse(xhr.response);
-
-                for(let i = 0; i < data.data.length; i++) {
-                    //Результат вычисления стоимости доставки
-                    console.log(data.data[i].Cost);
-                    console.log(data.data[i]);
-                    new Popup().showPopup('#popup-result', data.data[i].Cost);
-                    break;
-                    //showPopup('#popup-result', data.data[i]);
-                }
-
-            } else {
-                console.log('Что то пошло не так');
-            }
-
-        });
-
+        fetch(apiUrl, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                //Вывод модального окна с результатом
+                new Popup().showPopup('#popup-result', data.data[0].Cost);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
-
-    //API ключ NovaPoshta
-    let apiKey = '04934ab23a2965497d012e4857e7527e';
-
-    //API NovaPoshta
-
-    //Тип груза
-    let cargoType = calcForm.elements['cargo-type'];
-    const cargoTypeObj = {
-        "modelName": "Common",
-        "calledMethod": "getCargoTypes",
-        "methodProperties": {},
-        "apiKey": apiKey
-    };
-
-    sendAjax(cargoType, cargoTypeObj);
-
-    //Вариант доставки
-    let cargoOptions = calcForm.elements['cargo-option'];
-    const cargoOptionsObj = {
-        "modelName": "Common",
-        "calledMethod": "getServiceTypes",
-        "apiKey": apiKey,
-        "methodProperties": {}
-    };
-
-    sendAjax(cargoOptions, cargoOptionsObj);
-
-
-    //Получение городов компании
-    let cityTo = calcForm.elements['cargo-city-to'];
-    let cityFrom = calcForm.elements['cargo-city-from'];
-
-    checkKeyCity('Mycity', cityTo);
-    checkKeyCity('Mycity', cityFrom);
-
-    //Универсальный AJAX-запрос для селектов кроме городов
-    function sendAjax(elem, reqObj, url = 'https://api.novaposhta.ua/v2.0/json/') {
-    let xhr = new XMLHttpRequest();
-
-    xhr.open('POST', url);
-
-    xhr.setRequestHeader('Content-type', 'application/json; charset = utf-8');
-
-    //Отправка данных на сервер
-    xhr.send(JSON.stringify(reqObj));
-
-    //проверяем состояние запроса
-    xhr.addEventListener('readystatechange', function () {
-        if (xhr.readyState < 4) {
-
-        } else if (xhr.readyState === 4 && xhr.status === 200) {
-
-            let type = JSON.parse(xhr.response);
-
-            for(let i = 0; i < type.data.length; i++) {
-
-                createOptions(type.data[i]);
-
-                elem.append(createOptions(type.data[i]));
-            }
-
-            //Формируем данные в декоративном селекте
-            if(elem.previousElementSibling.hasAttribute('data-select')){
-                let select = elem.previousElementSibling.querySelector('.form-select__dropdown');
-
-                for(let i = 0; i < type.data.length; i++) {
-                    createSelectItem(type.data[i]);
-                    select.append(createSelectItem(type.data[i]));
-                }
-
-            }
-
-        } else {
-            console.log('Что то пошло не так');
-        }
-
-    });
-}
-
-    //Создаем пункты реального селекта
-    function createOptions(data){
-    //Формируем рекальный селект
-    let opt = document.createElement('option');
-    opt.value = data.Ref;
-    opt.textContent = data.Description;
-
-    return opt;
-}
-
-    //Создаем пункты декоративного селекта
-    function createSelectItem(data) {
-    let selectItem = document.createElement('div');
-    selectItem.classList.add('form-select__item');
-    selectItem.setAttribute('data-select-item', data.Ref);
-    selectItem.textContent = data.Description;
-    return selectItem;
-}
-
-    //Получение куки
-    function getCookie(name) {
-        let matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
-
-    //Загрузка городов в localStorage
-    function getCities(){
-        let date = new Date();
-        date = new Date(date.setDate(date.getDate() + 1));
-
-
-        let cityObj = {
-            "modelName": "Address",
-            "calledMethod": "getCities",
-            "methodProperties": {},
-            "apiKey": apiKey
-        };
-
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', 'https://api.novaposhta.ua/v2.0/json/');
-
-        xhr.setRequestHeader('Content-type', 'application/json; charset = utf-8');
-
-        //Отправка данных на сервер
-        xhr.send(JSON.stringify(cityObj));
-
-        //проверяем состояние запроса
-        xhr.addEventListener('readystatechange', function () {
-            if (xhr.readyState < 4) {
-
-            } else if (xhr.readyState === 4 && xhr.status === 200) {
-                let city = [];
-                let obj = {};
-
-                let cities = JSON.parse(xhr.response);
-
-                for (let i = 0; i < cities.data.length; i++) {
-
-
-                    obj = {
-                        Ref: cities.data[i].Ref,
-                        Description: cities.data[i].Description
-                    };
-
-                    //Сформировали справочник населенных пунктов
-                    city.push(obj);
-
-                }
-
-                localStorage.setItem('Mycity', JSON.stringify(city));
-
-            } else {
-                console.log('Что то пошло не так');
-            }
-        });
-
-        document.cookie = `${decodeURI('cities')} = ${decodeURI(true)}; expires = ${date}; path = /`;
-    }
-
-    //Проверка наличие куки
-    if(getCookie('cities') === undefined) {
-        getCities();
-    }
-
-    //Проверка наличия ключа в localStorage
-    function checkKeyCity(key, element){
-
-        if (localStorage.getItem(key) !== null){
-            let data = JSON.parse(localStorage.getItem(key));
-
-            //Формируем данные в селекте
-            for(let i = 0; i < data.length; i++) {
-
-                createOptions(data[i]);
-
-                element.append(createOptions(data[i]));
-            }
-
-
-            //Формируем данные в декоративном селекте
-            if(element.previousElementSibling.hasAttribute('data-select')){
-                let select = element.previousElementSibling.querySelector('.form-select__dropdown');
-                select.overflowY = 'scroll';
-
-                for(let i = 0; i < data.length; i++) {
-                    createSelectItem(data[i]);
-                    select.append(createSelectItem(data[i]));
-                }
-            }
-
-
-            let el = element.previousElementSibling.querySelector('[data-select-title]');
-            el.setAttribute('contenteditable', true);
-
-            el.addEventListener('focus', function(){
-                this.textContent = '';
-            });
-
-
-            //Живой поиск
-            el.addEventListener('input', function(){
-
-                element.previousElementSibling.querySelector('.form-select__dropdown').classList.remove('hidden');
-
-                let val = this.textContent.trim().toLowerCase();
-
-                let items = element.previousElementSibling.querySelectorAll('.form-select__item');
-
-
-                if(val != ''){
-                    items.forEach(function(elem) {
-                        if(elem.textContent.toLowerCase().search(val) == -1) {
-                            elem.classList.add('hidden');
-                        }else{
-                            elem.classList.remove('hidden');
-                        }
-                    });
-                }else{
-                    items.forEach(function(elem) {
-                        elem.classList.remove('hidden');
-                    });
-                }
-        });
-
-        }
-    }
-
-//END Получение городов компании
 
 });

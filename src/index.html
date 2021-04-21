@@ -10,13 +10,22 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
     <link rel="shortcut icon" href="img/logo.ico" type="image/ico">
 
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
 
-    <style>
-        @font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Light.eot);src:local("Open Sans Light"),local("OpenSans-Light"),url(fonts/OpenSans-Light.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Light.woff) format("woff"),url(fonts/OpenSans-Light.ttf) format("truetype");font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Regular.eot);src:local("Open Sans Regular"),local("OpenSans-Regular"),url(fonts/OpenSans-Regular.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Regular.woff) format("woff"),url(fonts/OpenSans-Regular.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'Open Sans';src:url(fonts/OpenSans-Bold.eot);src:local("Open Sans Bold"),local("OpenSans-Bold"),url(fonts/OpenSans-Bold.eot?#iefix) format("embedded-opentype"),url(fonts/OpenSans-Bold.woff) format("woff"),url(fonts/OpenSans-Bold.ttf) format("truetype");font-weight:700;font-style:normal;font-display:swap}*,:after,:before{box-sizing:border-box}body{position:relative;font-family:'Open Sans',sans-serif;font-size:14px;font-weight:400;background:pink;color:#3a3a3a}body{margin:0}p{margin:0}h1,h2,h3,h4,h5{margin:0;font-weight:400}a:hover{text-decoration:none}img{max-width:100%;height:auto}button:focus,div:focus,input:focus,textarea:focus{outline:0}ul{margin:0;padding:0;list-style:none}.hidden{display:none}section{padding:50px 0}.section-title{text-align:center;font-size:30px;line-height:1.3}.section-subtitle{text-align:center;margin-top:12px;font-size:19px;font-weight:300;line-height:1.2}.section-subtitle span{text-transform:uppercase}.button{display:block;padding:22px 33px;color:#fff;font-size:14px;text-transform:uppercase;background:#e93b3b;border-radius:5px;border:1px solid transparent;transition:all .5s ease}.button:hover{cursor:pointer;background:#d91818}.button-o{padding:15px 21px;font-size:12px;background:0 0;color:#e93b3b;border:1px solid #e93b3b;transition:all .5s ease}.button-o:hover{background:#e93b3b;color:#fff}.button_up{display:none;padding:8px;position:fixed;right:3%;bottom:40px;z-index:997}.dark-bg{position:relative;z-index:2}.dark-bg::before{position:absolute;display:block;content:'';width:100%;height:100%;left:0;top:0;background:rgba(37,51,60,.3);z-index:-1}.row-flex{display:flex;flex-wrap:wrap}.row-flex [class*=col-]{margin-bottom:30px}.info-block{text-align:center;min-height:400px}.info-block__header{padding:24px 0 22px 0;text-transform:uppercase;color:#fff;background:#25333c}.info-block__title{font-size:16px;font-weight:700;line-height:1.4}.info-block__content{position:relative;padding:12px 0 25px;background:#fff}.info-block__content-title{font-size:18px;text-transform:uppercase;line-height:1.2}.info-block__content-subtitle{display:block;font-size:25px;font-weight:700;color:#e93b3b}.info-block__img{margin-bottom:5px}.form{padding:10px 17px 20px 17px;display:flex;width:100%;flex-direction:column;justify-content:center;align-items:center}.form__group{display:flex;flex-direction:column;margin-right:10px}.form__group:last-child{margin-right:0}.form__row{margin-bottom:25px;display:flex;width:100%;justify-content:space-around}.form__row-wrap{display:flex;flex-direction:row;justify-content:space-around}.form__small{margin-top:15px;display:block;text-align:center;font-size:14px;font-weight:300;line-height:1.2}.form__input,.form__textarea{position:relative;min-width:281px;width:100%;margin-bottom:3px;padding:20px 21px;font-family:'Open Sans',sans-serif;font-size:14px;font-weight:400;background:#fff;border:1px solid #c1c4c7}.form__input::-webkit-input-placeholder,.form__textarea::-webkit-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::-moz-placeholder,.form__textarea::-moz-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input:-ms-input-placeholder,.form__textarea:-ms-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::-ms-input-placeholder,.form__textarea::-ms-input-placeholder{color:#616467;font-size:13px;font-weight:300}.form__input::placeholder,.form__textarea::placeholder{color:#616467;font-size:13px;font-weight:300}.form__input-small,.form__textarea-small{min-width:auto;text-align:center;max-width:71px;margin-bottom:0;padding:15px 10px}.form__label{margin-bottom:5px;font-size:16px;font-weight:700}.form__label-small{margin-bottom:0;font-size:14px;font-weight:400}.form__button{margin-top:15px}.form__custom-select{display:none;position:absolute}.form__dropdown{position:relative;max-width:260px;width:100%;display:flex;border:1px solid #c1c4c7;background:#fff}.form__dropdown-button{display:block;padding:0;text-align:center;width:38px;height:auto;background:#f3f3f3;border:none;transition:all .5s ease}.form__dropdown-button:hover{cursor:pointer;background:#e9e9e9}.form-select{cursor:pointer}.form-select__title{position:relative;min-width:226px;width:100%;padding:19px 23px;border:1px solid transparent;border-right:1px solid #c1c4c7;font-size:13px;font-weight:300;line-height:1}.form-select__dropdown{min-width:226px;position:absolute;left:-1px;right:-1px;top:100%;border:1px solid #c1c4c7;z-index:55;overflow-x:hidden;background:#fff;height:95px}.form-select__item{padding:5px 23px;background:#fff}.form-select__item:hover{cursor:pointer;background:#e9e9e9}.social-block{display:flex;flex-direction:row;font-size:18px}.social-block__link{margin-right:10px;display:flex;justify-content:center;align-items:center;width:36px;height:36px;border:1px solid #d3d6d8;border-radius:4px;color:#d3d6d8;transition:all .5s ease}.social-block__link:last-child{margin-right:0}.social-block__link:hover{color:#fff;border:1px solid #fff}.warning{position:relative;width:100%;display:block;font-size:12px;z-index:10}.iframe{width:100%;height:100%}.header-top{padding:8px 0;background:#25333c}.header-top__button{display:block;text-transform:uppercase;padding:10px 14px;background:0 0;color:#d3d6d8;border:1px solid #d3d6d8;cursor:pointer;transition:all .5s ease}.header-top__button:hover{color:#fff;border-color:#fff}.header-top__delivery{display:flex;justify-content:space-between}.header-top__phones{display:flex;justify-content:space-between}.header-top__link{display:block;color:#d3d6d8}.header-top__link img{margin-right:10px}.header-top__link:hover{color:#fff}.header-wrap{background:#626180 url(img/header/header_bg.jpg) center 0 no-repeat;background-size:cover}.header-main{padding:15px 0 12px 0;border-bottom:1px solid #fff}.header-logo{display:flex;justify-content:center;align-items:center}.header-logo__img{flex-shrink:0;margin-right:10px}.header-logo__text{text-transform:uppercase;color:#fff}.header-logo__title{display:block;font-size:27px;font-weight:700}.header-logo__descr{font-size:12px}.header-navigation__btn{display:none;position:relative;width:30px;height:30px;background:#d3d6d8;border-radius:5px;transition:all .5s ease}.header-navigation__btn:hover{box-shadow:1px 1px 10px rgba(0,0,0,.4)}.header-navigation__line,.header-navigation__line::after,.header-navigation__line::before{display:block;position:absolute;top:50%;left:50%;transform:translateX(-50%);width:20px;height:2px;background:#4a526c}.header-navigation__line::before{content:'';margin-top:-5px}.header-navigation__line::after{content:'';margin-top:3px}.header-navigation__close{display:none;position:absolute;width:30px;height:30px;border-radius:50%;border:none;top:5px;left:auto;right:-30px;background:0 0}.header-navigation__active .header-navigation__line{background:0 0}.header-navigation__active .header-navigation__line::before{left:0;top:0;transform:rotate(-135deg);margin-top:0}.header-navigation__active .header-navigation__line::after{left:0;top:0;transform:rotate(135deg);margin-top:0}.header-navigation__list{display:flex}.header-navigation__item{margin-right:35px;text-align:center}.header-navigation__item:last-child{margin-right:0}.header-navigation__link{position:relative;text-align:center;font-size:13px;font-weight:700;text-transform:uppercase;color:#fff;cursor:pointer;transition:all .5s ease}.header-navigation__link::after{display:block;position:absolute;top:6px;right:-13px;content:'';width:8px;height:5px;background:url(img/header/nav-arrow.svg) center 0 no-repeat;background-size:100%}.header-navigation__link:hover{text-decoration:none;color:#e93d3d}.header-content{position:relative;padding-top:60px;padding-bottom:100px}.header-content__title{margin-bottom:50px;font-size:48px;font-weight:700;line-height:2;text-align:center;color:#fff;text-transform:uppercase}.header-content__video{width:100%;height:100%}.header-content__down{display:block;position:absolute;bottom:30px;left:50%;transform:translateX(-50%)}.header-info__header{padding:20px 0 16px 0}.header-info__title{font-size:19px}.header-info__content{padding:0;background:rgba(255,255,255,.7)}.header-social{position:absolute;top:50%;transform:translateY(-50%);right:15px;display:flex;flex-direction:column}.header-social__link{display:flex;align-items:center;justify-content:center;margin-bottom:5px;width:46px;height:46px;font-size:20px;color:#fff}.header-social__link:hover{color:#fff}.header-social__link:last-child{margin-bottom:0}.header-social__link-instagram{background:#57a1d0}.header-social__link-instagram:hover{background:#6bacd6}.header-social__link-vk{background:#4984ad}.header-social__link-vk:hover{background:#5790b8}.header-social__link-message{background:#e93b3b}.header-social__link-message:hover{background:#ec5252}
-    </style>
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.min.css">
 
 </head>
 <body>
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="lds-dual-ring"></div>
+</div>
+<!-- /.preloader -->
 
 <header class="header">
     <div class="header-top">
@@ -193,7 +202,7 @@
 
                     <div class="col-12 order-1 col-lg-10 offset-lg-1 col-xl-8  offset-xl-0 order-xl-2">
                         <div class="header-content__video">
-                            <iframe class="iframe" src="https://www.youtube.com/embed/c0-i8TSD6VM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe class="iframe" loading="lazy" src="https://www.youtube.com/embed/c0-i8TSD6VM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -963,7 +972,7 @@
                         <h4 class="info-block__content-title delivery-block__content-title">23-28 дней</h4>
                         <!-- /.info-block__content-title -->
 
-                        <button class="button button-o">узнать подробнее</button>
+                        <button class="button button-o delivery-block__button">узнать подробнее</button>
                     </div>
                     <!-- /.info-block__content -->
                 </div>
@@ -989,7 +998,7 @@
                         <h4 class="info-block__content-title delivery-block__content-title">15-20 дней</h4>
                         <!-- /.info-block__content-title -->
 
-                        <button class="button button-o">узнать подробнее</button>
+                        <button class="button button-o delivery-block__button">узнать подробнее</button>
                     </div>
                     <!-- /.info-block__content -->
                 </div>
@@ -1015,7 +1024,7 @@
                         <h4 class="info-block__content-title delivery-block__content-title">7-11 дней</h4>
                         <!-- /.info-block__content-title -->
 
-                        <button class="button button-o">узнать подробнее</button>
+                        <button class="button button-o delivery-block__button">узнать подробнее</button>
                     </div>
                     <!-- /.info-block__content -->
                 </div>
@@ -1041,7 +1050,7 @@
                         <h4 class="info-block__content-title delivery-block__content-title">4-7 дней</h4>
                         <!-- /.info-block__content-title -->
 
-                        <button class="button button-o">узнать подробнее</button>
+                        <button class="button button-o delivery-block__button">узнать подробнее</button>
                     </div>
                     <!-- /.info-block__content -->
                 </div>
@@ -1710,29 +1719,19 @@
 </div>
 
 
-
-
-
-
-
-
-
 <button class="button button_up">
     <i class="fas fa-chevron-up"></i>
 </button>
 <!-- /.button.button-up -->
 
-
-<!-- Style -->
-<!-- Bootstrap -->
-<link rel="stylesheet" href="css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-
-<link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
-
-<!-- Main Style -->
-<link rel="stylesheet" href="css/style.css">
-
+<script>
+    /*Preloader*/
+    setTimeout(() => {
+        const preloader = document.querySelector('.preloader');
+        preloader.style.display = 'none';
+        document.body.style.overflowY = 'auto';
+    }, 3000);
+</script>
 
 <!-- JQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" integrity="sha256-rsPUGdUPBXgalvIj4YKJrrUlmLXbOb6Cp7cdxn1qeUc=" crossorigin="anonymous"></script>
@@ -1741,6 +1740,7 @@
 <link rel="stylesheet" href="plugins/slick/slick.css">
 <link rel="stylesheet" href="plugins/slick/slick-theme.css">
 <script src="plugins/slick/slick.min.js"></script>
+
 
 <!-- MaskedInput -->
 <script src="plugins/jquery.maskedinput.min.js"></script>
@@ -1753,8 +1753,9 @@
 
 <script src="js/modules/popup.js"></script>
 <script src="js/modules/news.js"></script>
-<script src="js/calculation.js"></script>
 <script src="js/main.js"></script>
 <script src="js/slider.js"></script>
+<script src="js/calculation.js"></script>
+
 </body>
 </html>
